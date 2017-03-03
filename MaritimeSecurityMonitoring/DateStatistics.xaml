@@ -1,0 +1,226 @@
+﻿<Page x:Class="MaritimeSecurityMonitoring.DateStatistics"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+       d:DesignHeight="600" d:DesignWidth="1100" ShowsNavigationUI="False" KeepAlive="False"
+	Title="Shujutongji">
+
+    <Grid  Width="Auto" Height="Auto">
+        <Grid.Background>
+            <ImageBrush ImageSource="Image/backgroundpicture.png" Stretch="Fill"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="3" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="6*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <WrapPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="1" Height="50" VerticalAlignment="Center">
+                <Label FontSize="16" Height="50" VerticalContentAlignment="Center" Margin="20,0,0,0" >统计数据类型：</Label>
+                <ComboBox Background="#E0E0E0" Width="100" Height="30" FontSize="16" VerticalContentAlignment="Center" SelectionChanged="ComboBox_SelectionChanged">
+                    <ComboBoxItem IsSelected="True">报警区域</ComboBoxItem>
+                    <ComboBoxItem>防护圈层</ComboBoxItem>
+                    <ComboBoxItem>目标</ComboBoxItem>
+                </ComboBox>
+            </WrapPanel>
+            <WrapPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="1" Height="50" VerticalAlignment="Center">
+                <Label FontSize="16" Height="50" VerticalContentAlignment="Center" Margin="20,0,0,0" >统计绘图类型：</Label>
+                <ComboBox Background="#E0E0E0" Width="100" Height="30" FontSize="16" VerticalContentAlignment="Center" SelectionChanged="ComboBox_SelectionChanged" Name="chartType">
+                    <ComboBoxItem IsSelected="True">柱状图</ComboBoxItem>
+                    <ComboBoxItem>饼状图</ComboBoxItem>
+                    <ComboBoxItem>折线图</ComboBoxItem>
+                </ComboBox>
+            </WrapPanel>
+            <WrapPanel Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2"  Height="50" VerticalAlignment="Center">
+                <Label FontSize="16" Height="50" VerticalContentAlignment="Center" >起止时间：</Label>
+                <ComboBox Background="#E0E0E0" Width="80" Height="30" FontSize="16" VerticalContentAlignment="Center" SelectionChanged="ComboBox_SelectionChanged">
+                    <ComboBoxItem>2010</ComboBoxItem>
+                    <ComboBoxItem>2011</ComboBoxItem>
+                    <ComboBoxItem>2012</ComboBoxItem>
+                    <ComboBoxItem>2013</ComboBoxItem>
+                    <ComboBoxItem>2014</ComboBoxItem>
+                    <ComboBoxItem>2015</ComboBoxItem>
+                    <ComboBoxItem IsSelected="True">2016</ComboBoxItem>
+                    <ComboBoxItem>2017</ComboBoxItem>
+                    <ComboBoxItem>2018</ComboBoxItem>
+                    <ComboBoxItem>2019</ComboBoxItem>
+                    <ComboBoxItem>2020</ComboBoxItem>
+                    <ComboBoxItem>2021</ComboBoxItem>
+                    <ComboBoxItem>2022</ComboBoxItem>
+                    <ComboBoxItem>2023</ComboBoxItem>
+                    <ComboBoxItem>2024</ComboBoxItem>
+                    <ComboBoxItem>2025</ComboBoxItem>
+                    <ComboBoxItem>2026</ComboBoxItem>
+                    <ComboBoxItem>2027</ComboBoxItem>
+                    <ComboBoxItem>2028</ComboBoxItem>
+                    <ComboBoxItem>2029</ComboBoxItem>
+                    <ComboBoxItem>2030</ComboBoxItem>
+                    <ComboBoxItem>2031</ComboBoxItem>
+                    <ComboBoxItem>2032</ComboBoxItem>
+                    <ComboBoxItem>2033</ComboBoxItem>
+                    <ComboBoxItem>2034</ComboBoxItem>
+                    <ComboBoxItem>2035</ComboBoxItem>
+                    <ComboBoxItem>2036</ComboBoxItem>
+                    <ComboBoxItem>2037</ComboBoxItem>
+                    <ComboBoxItem>2038</ComboBoxItem>
+                    <ComboBoxItem>2039</ComboBoxItem>
+                    <ComboBoxItem>2040</ComboBoxItem>
+                    <ComboBoxItem>2041</ComboBoxItem>
+                    <ComboBoxItem>2042</ComboBoxItem>
+                    <ComboBoxItem>2043</ComboBoxItem>
+                    <ComboBoxItem>2044</ComboBoxItem>
+                    <ComboBoxItem>2045</ComboBoxItem>
+                    <ComboBoxItem>2046</ComboBoxItem>
+                    <ComboBoxItem>2047</ComboBoxItem>
+                    <ComboBoxItem>2048</ComboBoxItem>
+                    <ComboBoxItem>2049</ComboBoxItem>
+                    <ComboBoxItem>2050</ComboBoxItem>
+                    <ComboBoxItem>2051</ComboBoxItem>
+                    <ComboBoxItem>2052</ComboBoxItem>
+                    <ComboBoxItem>2053</ComboBoxItem>
+                    <ComboBoxItem>2054</ComboBoxItem>
+                    <ComboBoxItem>2055</ComboBoxItem>
+                    <ComboBoxItem>2056</ComboBoxItem>
+                    <ComboBoxItem>2057</ComboBoxItem>
+                    <ComboBoxItem>2058</ComboBoxItem>
+                    <ComboBoxItem>2059</ComboBoxItem>
+                    <ComboBoxItem>2060</ComboBoxItem>
+                    <ComboBoxItem>2051</ComboBoxItem>
+                    <ComboBoxItem>2052</ComboBoxItem>
+                    <ComboBoxItem>2053</ComboBoxItem>
+                    <ComboBoxItem>2054</ComboBoxItem>
+                    <ComboBoxItem>2055</ComboBoxItem>
+                    <ComboBoxItem>2056</ComboBoxItem>
+                    <ComboBoxItem>2057</ComboBoxItem>
+                    <ComboBoxItem>2058</ComboBoxItem>
+                    <ComboBoxItem>2059</ComboBoxItem>
+                    <ComboBoxItem>2060</ComboBoxItem>
+                    <ComboBoxItem>2061</ComboBoxItem>
+                    <ComboBoxItem>2062</ComboBoxItem>
+                    <ComboBoxItem>2063</ComboBoxItem>
+                    <ComboBoxItem>2064</ComboBoxItem>
+                    <ComboBoxItem>2065</ComboBoxItem>
+                    <ComboBoxItem>2066</ComboBoxItem>
+                    <ComboBoxItem>2067</ComboBoxItem>
+                    <ComboBoxItem>2068</ComboBoxItem>
+                    <ComboBoxItem>2069</ComboBoxItem>
+                    <ComboBoxItem>2070</ComboBoxItem>
+                    <ComboBoxItem>2071</ComboBoxItem>
+                    <ComboBoxItem>2072</ComboBoxItem>
+                    <ComboBoxItem>2073</ComboBoxItem>
+                    <ComboBoxItem>2074</ComboBoxItem>
+                    <ComboBoxItem>2075</ComboBoxItem>
+                    <ComboBoxItem>2076</ComboBoxItem>
+                    <ComboBoxItem>2077</ComboBoxItem>
+                    <ComboBoxItem>2078</ComboBoxItem>
+                    <ComboBoxItem>2079</ComboBoxItem>
+                    <ComboBoxItem>2080</ComboBoxItem>
+                    <ComboBoxItem>2081</ComboBoxItem>
+                    <ComboBoxItem>2082</ComboBoxItem>
+                    <ComboBoxItem>2083</ComboBoxItem>
+                    <ComboBoxItem>2084</ComboBoxItem>
+                    <ComboBoxItem>2085</ComboBoxItem>
+                    <ComboBoxItem>2086</ComboBoxItem>
+                    <ComboBoxItem>2087</ComboBoxItem>
+                    <ComboBoxItem>2088</ComboBoxItem>
+                    <ComboBoxItem>2089</ComboBoxItem>
+                    <ComboBoxItem>2090</ComboBoxItem>
+                    <ComboBoxItem>2091</ComboBoxItem>
+                    <ComboBoxItem>2092</ComboBoxItem>
+                    <ComboBoxItem>2093</ComboBoxItem>
+                    <ComboBoxItem>2094</ComboBoxItem>
+                    <ComboBoxItem>2095</ComboBoxItem>
+                    <ComboBoxItem>2096</ComboBoxItem>
+                    <ComboBoxItem>2097</ComboBoxItem>
+                    <ComboBoxItem>2098</ComboBoxItem>
+                    <ComboBoxItem>2099</ComboBoxItem>
+                    <ComboBoxItem>2100</ComboBoxItem>
+                    <ComboBoxItem>2101</ComboBoxItem>
+                    <ComboBoxItem>2102</ComboBoxItem>
+                    <ComboBoxItem>2103</ComboBoxItem>
+                    <ComboBoxItem>2104</ComboBoxItem>
+                    <ComboBoxItem>2105</ComboBoxItem>
+                    <ComboBoxItem>2106</ComboBoxItem>
+                    <ComboBoxItem>2107</ComboBoxItem>
+                    <ComboBoxItem>2108</ComboBoxItem>
+                    <ComboBoxItem>2109</ComboBoxItem>
+                    <ComboBoxItem>2100</ComboBoxItem>
+                    <ComboBoxItem>2111</ComboBoxItem>
+                    <ComboBoxItem>2112</ComboBoxItem>
+                    <ComboBoxItem>2113</ComboBoxItem>
+                    <ComboBoxItem>2114</ComboBoxItem>
+                    <ComboBoxItem>2115</ComboBoxItem>
+                    <ComboBoxItem>2116</ComboBoxItem>
+                    <ComboBoxItem>2117</ComboBoxItem>
+                    <ComboBoxItem>2118</ComboBoxItem>
+                    <ComboBoxItem>2119</ComboBoxItem>
+                    <ComboBoxItem>2120</ComboBoxItem>
+                </ComboBox>
+                <Label Height="50" VerticalContentAlignment="Center" FontSize="16">年</Label>
+                <ComboBox Background="#E0E0E0" Width="80" FontSize="16" Height="30" VerticalContentAlignment="Center">
+                    <ComboBoxItem IsSelected="True">1</ComboBoxItem>
+                    <ComboBoxItem>2</ComboBoxItem>
+                    <ComboBoxItem>3</ComboBoxItem>
+                    <ComboBoxItem>4</ComboBoxItem>
+                    <ComboBoxItem>5</ComboBoxItem>
+                    <ComboBoxItem>6</ComboBoxItem>
+                    <ComboBoxItem>7</ComboBoxItem>
+                    <ComboBoxItem>8</ComboBoxItem>
+                    <ComboBoxItem>9</ComboBoxItem>
+                    <ComboBoxItem>10</ComboBoxItem>
+                    <ComboBoxItem>11</ComboBoxItem>
+                    <ComboBoxItem>12</ComboBoxItem>
+                </ComboBox>
+                <Label Height="50" VerticalContentAlignment="Center" FontSize="16">—</Label>
+                <ComboBox  Width="80" FontSize="16" Height="30" VerticalContentAlignment="Center">
+                    <ComboBoxItem IsSelected="True" >1</ComboBoxItem>
+                    <ComboBoxItem>2</ComboBoxItem>
+                    <ComboBoxItem>3</ComboBoxItem>
+                    <ComboBoxItem>4</ComboBoxItem>
+                    <ComboBoxItem>5</ComboBoxItem>
+                    <ComboBoxItem>6</ComboBoxItem>
+                    <ComboBoxItem>7</ComboBoxItem>
+                    <ComboBoxItem>8</ComboBoxItem>
+                    <ComboBoxItem>9</ComboBoxItem>
+                    <ComboBoxItem>10</ComboBoxItem>
+                    <ComboBoxItem>11</ComboBoxItem>
+                    <ComboBoxItem>12</ComboBoxItem>
+                </ComboBox>
+                <Label Height="50" VerticalContentAlignment="Center" FontSize="16">月</Label>
+            </WrapPanel>
+            <Button Grid.Row="3" Grid.Column="4" Content="统计" HorizontalAlignment="Center"  VerticalAlignment="Center" FontSize="15" Foreground="White" Background="#1e8ab7" Height="30" Width="80" Margin="0,0,0,0" Click="statisticsClick" />
+            <Grid Grid.Row="4" Grid.Column="1" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Row="0" Grid.Column="0" Content="柱状图" Name="ButColumn1" HorizontalAlignment="Left"  VerticalAlignment="Center" FontSize="13" Foreground="White" Background="#1e8ab7" Height="30" Width="80" Margin="0,80,0,0" Click="ButColumn_Click1" />
+                <Button Grid.Row="0" Grid.Column="1" Content="饼状图" Name="ButPie1" HorizontalAlignment="Left"  VerticalAlignment="Center" FontSize="13" Foreground="White" Background="#1e8ab7" Height="30" Width="80" Margin="0,80,0,0" Click="ButPie_Click1" />
+                <Button Grid.Row="0" Grid.Column="2" Content="折线图" Name="ButSpline1" HorizontalAlignment="Left"  VerticalAlignment="Center" FontSize="13" Foreground="White" Background="#1e8ab7" Height="30" Width="80" Margin="0,80,0,0" Click="ButSpline_Click1"  />
+            </Grid>
+
+            <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="2" Margin="30,30,30,30" Background="#E0E0E0" >
+                <Grid Name="Simon1" Margin="50">
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

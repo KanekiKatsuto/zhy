@@ -1,0 +1,517 @@
+﻿<Page x:Class="MaritimeSecurityMonitoring.MainInterfacePage.Monitoring"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:wfi ="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration" 
+      xmlns:wf ="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"   
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:ym="clr-namespace:YimaWF;assembly=YimaWF"
+      mc:Ignorable="d" 
+      d:DesignWidth="1097.345" d:DesignHeight="608"
+	Title="Monitoring" Loaded="Page_Loaded"  ShowsNavigationUI="False" KeepAlive="True">
+    <Page.Resources>
+        <Style x:Key="ListViewItemStyle" TargetType="{x:Type ListViewItem}">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+    </Page.Resources>
+    <Grid Width="Auto" Height="Auto">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="0.9*"/>
+            <RowDefinition Height="0.13*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Grid.Column="0" Name="buju">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="1.3*"/>
+            </Grid.ColumnDefinitions>
+            <MediaElement Grid.Row="1" Grid.Column="1" Source="Video\0_1.mp4" LoadedBehavior="Play" Stretch="Fill" Name="video2"/>
+            <MediaElement Grid.Row="2" Grid.Column="1" Source="Video\0_2.mp4" LoadedBehavior="Play" Stretch="Fill" Name="video3"/>
+            <wfi:WindowsFormsHost Grid.Row="0" Grid.Column="1">
+			    <!--视频播放控件嵌入-->
+                <wf:PictureBox x:Name="infraredRayPictureBox" Margin="0,0,0,0"></wf:PictureBox>
+            </wfi:WindowsFormsHost>
+            <wfi:WindowsFormsHost Grid.Row="1" Grid.Column="1">
+                <!--视频播放控件嵌入-->
+                <wf:PictureBox x:Name="followingPictureBox" Margin="0,0,0,0"></wf:PictureBox>
+            </wfi:WindowsFormsHost>
+            <wfi:WindowsFormsHost Grid.Row="2" Grid.Column="1">
+                <!--视频播放控件嵌入-->
+                <wf:PictureBox x:Name="telephotoPictureBox" Margin="0,0,0,0"></wf:PictureBox>
+            </wfi:WindowsFormsHost>
+			
+            <WindowsFormsHost Grid.RowSpan="3" x:Name="formshost">
+                <ym:YimaEncCtrl x:Name="yimaEncCtrl"/>
+            </WindowsFormsHost>
+			
+            <ListBox Grid.Row="0" Grid.RowSpan="3" Margin="80" Width="200" Foreground="White" FontSize="15" Height="150" BorderBrush="#FF323441" BorderThickness="3" Background="CornflowerBlue" VerticalAlignment="Top" Opacity = "0.8" HorizontalAlignment="Left" Visibility="Collapsed"  Name="targetBoxInformation"></ListBox >
+            <Button Grid.Row="0" Grid.RowSpan="3" Margin="220,190,80,80" Width="50" Foreground="White" FontSize="15" Height="30"   BorderThickness="2" Background="#84C1FF" VerticalAlignment="Top" HorizontalAlignment="Left" Name="moreInformationButton" Opacity="0.8" Visibility="Collapsed" Click="getMoreInformationClick">详情</Button>
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.Column="0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.27*"/>
+                <ColumnDefinition Width="2.6*"/>
+                <ColumnDefinition Width="2.0*"/>
+                <ColumnDefinition Width="1.27*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Button Grid.Row="0" Grid.Column="0" FontSize="15" Foreground="White" Background="SteelBlue"  Click="allTargetClick" >所有目标
+            </Button>
+
+            <Button Grid.Row="1" Grid.Column="0" FontSize="15" Foreground="White" Background="SteelBlue"  Click="AISTargetClick" >AIS目标
+            </Button>
+
+            <Button Grid.Row="2" Grid.Column="0" FontSize="15" Foreground="White" Background="SteelBlue"  Click="radarTargetClick">雷达目标
+            </Button>
+
+            <Button Grid.Row="3" Grid.Column="0" FontSize="15" Foreground="White" Background="SteelBlue"  Click="mixTargetClick">融合目标
+            </Button>
+
+            <Grid Grid.Row="0" Grid.Column="1" Grid.RowSpan="4">
+
+                <ListView  Name="AISListView" ItemsSource="{Binding}" Background="#C4E1FF" ItemContainerStyle="{StaticResource ListViewItemStyle}" SelectionChanged="listView1_SelectionChanged_1"  >
+                    <ListView.View>
+                        <GridView AllowsColumnReorder="True">
+                            <GridViewColumn Header="MMSI" DisplayMemberBinding="{Binding MMSI}" Width="100"/>
+                            <GridViewColumn Header="IMO"  DisplayMemberBinding="{Binding IMO}" Width="100"/>
+                            <GridViewColumn Header="经度" DisplayMemberBinding="{Binding longitude}" Width="100"/>
+                            <GridViewColumn Header="纬度" DisplayMemberBinding="{Binding latitude}" Width="100"/>
+                            <GridViewColumn Header="距离" DisplayMemberBinding="{Binding distance}" Width="100"/>
+                            <GridViewColumn Header="航速" DisplayMemberBinding="{Binding speed}" Width="100"/>
+                            <GridViewColumn Header="方向" DisplayMemberBinding="{Binding steeringAngle}" Width="100"/>
+                            <GridViewColumn Header="船名" DisplayMemberBinding="{Binding boatName}" Width="100"/>
+                            <GridViewColumn Header="呼号" DisplayMemberBinding="{Binding callSign}" Width="100"/>
+                            <GridViewColumn Header="串货类型" DisplayMemberBinding="{Binding cargoType}" Width="100"/>
+                            <GridViewColumn Header="航行状况" DisplayMemberBinding="{Binding sailingStatus}" Width="100"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+                <ListView  Name="radarListView" ItemsSource="{Binding}" Background="#C4E1FF" ItemContainerStyle="{StaticResource ListViewItemStyle}" SelectionChanged="listView1_SelectionChanged_1"  >
+                    <ListView.View>
+                        <GridView AllowsColumnReorder="True">
+                            <GridViewColumn Header="批号" DisplayMemberBinding="{Binding batchNumber}" Width="100"/>
+                            <GridViewColumn Header="经度" DisplayMemberBinding="{Binding longitude}" Width="100"/>
+                            <GridViewColumn Header="纬度" DisplayMemberBinding="{Binding latitude}" Width="100"/>
+                            <GridViewColumn Header="距离" DisplayMemberBinding="{Binding distance}" Width="100"/>
+                            <GridViewColumn Header="航速" DisplayMemberBinding="{Binding speed}" Width="100"/>
+                            <GridViewColumn Header="方向" DisplayMemberBinding="{Binding steeringAngle}" Width="100"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+                <ListView  Name="mixListView" ItemsSource="{Binding}" Background="#C4E1FF" ItemContainerStyle="{StaticResource ListViewItemStyle}" SelectionChanged="listView1_SelectionChanged_1"  >
+                    <ListView.View>
+                        <GridView AllowsColumnReorder="True">
+                            <GridViewColumn Header="融合批号" DisplayMemberBinding="{Binding mixBatchNumber}" Width="100"/>
+                            <GridViewColumn Header="MMSI" DisplayMemberBinding="{Binding MMSI}" Width="100"/>
+                            <GridViewColumn Header="IMO" DisplayMemberBinding="{Binding IMO}" Width="100"/>
+                            <GridViewColumn Header="经度" DisplayMemberBinding="{Binding longitude}" Width="100"/>
+                            <GridViewColumn Header="纬度" DisplayMemberBinding="{Binding latitude}" Width="100"/>
+                            <GridViewColumn Header="距离" DisplayMemberBinding="{Binding distance}" Width="100"/>
+                            <GridViewColumn Header="航速" DisplayMemberBinding="{Binding speed}" Width="100"/>
+                            <GridViewColumn Header="方向" DisplayMemberBinding="{Binding steeringAngle}" Width="100"/>
+                            <GridViewColumn Header="船名" DisplayMemberBinding="{Binding boatName}" Width="100"/>
+                            <GridViewColumn Header="呼号" DisplayMemberBinding="{Binding callSign}" Width="100"/>
+                            <GridViewColumn Header="船货类型" DisplayMemberBinding="{Binding cargoType}" Width="100"/>
+                            <GridViewColumn Header="航行状态" DisplayMemberBinding="{Binding sailingStatus}" Width="100"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+                <ListView  Name="allListView" ItemsSource="{Binding}" Background="#C4E1FF" ItemContainerStyle="{StaticResource ListViewItemStyle}" SelectionChanged="listView1_SelectionChanged_1"  >
+                    <ListView.View>
+                        <GridView AllowsColumnReorder="True">
+                            <GridViewColumn Header="来源" DisplayMemberBinding="{Binding dataType}" Width="100"/>
+                            <GridViewColumn Header="批号" DisplayMemberBinding="{Binding batchNumber}" Width="100"/>
+                            <GridViewColumn Header="MMSI" DisplayMemberBinding="{Binding MMSI}" Width="100"/>
+                            <GridViewColumn Header="IMO" DisplayMemberBinding="{Binding IMO}" Width="100"/>
+                            <GridViewColumn Header="经度" DisplayMemberBinding="{Binding longitude}" Width="100"/>
+                            <GridViewColumn Header="纬度" DisplayMemberBinding="{Binding latitude}" Width="100"/>
+                            <GridViewColumn Header="距离" DisplayMemberBinding="{Binding distance}" Width="100"/>
+                            <GridViewColumn Header="航速" DisplayMemberBinding="{Binding speed}" Width="100"/>
+                            <GridViewColumn Header="方向" DisplayMemberBinding="{Binding steeringAngle}" Width="100"/>
+                            <GridViewColumn Header="船名" DisplayMemberBinding="{Binding boatName}" Width="100"/>
+                            <GridViewColumn Header="呼号" DisplayMemberBinding="{Binding callSign}" Width="100"/>
+                            <GridViewColumn Header="船货类型" DisplayMemberBinding="{Binding cargoType}" Width="100"/>
+                            <GridViewColumn Header="航行状态" DisplayMemberBinding="{Binding sailingStatus}" Width="100"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+
+            <Grid Grid.Row="0" Grid.Column="2" Grid.RowSpan="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition Width="10*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Row="0" Grid.RowSpan="1" Name="allCheck" Background="SteelBlue" Click="allCheck_Click">
+                        <Grid Height="50">
+                            <Label FontSize="15" Foreground="White" VerticalContentAlignment="Top">全</Label>
+                            <Label FontSize="15" Foreground="White" VerticalContentAlignment="Bottom">选</Label>
+                        </Grid>
+                    </Button>
+                    <Button Grid.Row="1" Grid.RowSpan="1" Name="delWarn" Background="SteelBlue" Click="delWarn_Click">
+                        <Grid Height="50">
+                            <Label FontSize="15" Foreground="White" VerticalContentAlignment="Top">删</Label>
+                            <Label FontSize="15" Foreground="White" VerticalContentAlignment="Bottom">除</Label>
+                        </Grid>
+                    </Button>
+                </Grid>
+
+                <ListView Grid.Column="1" Grid.ColumnSpan="2"  Name="warnListView" ItemsSource="{Binding}"  Background="#C4E1FF" ItemContainerStyle="{StaticResource ListViewItemStyle}" BorderThickness="1" SelectionChanged="listView2_SelectionChanged"  Margin="0,0,-0.2,0">
+                    <ListView.View>
+                        <GridView AllowsColumnReorder="True">
+                            <GridViewColumn Header="选择" Width="40">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox  IsChecked="{Binding isCheck}"  IsThreeState="False"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="报警时间" x:Name="warnTime" DisplayMemberBinding="{Binding alarmTime}" Width="150"/>
+                            <GridViewColumn Header="MMSI" DisplayMemberBinding="{Binding MMSI}" Width="100"/>
+                            <GridViewColumn Header="报警类型" DisplayMemberBinding="{Binding alarmType}" Width="100"/>
+                            <GridViewColumn Header="内容" DisplayMemberBinding="{Binding alarmContent}" Width="230"/>
+
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+
+            <Border Grid.Row="0" Grid.Column="3" Grid.RowSpan="4" Background="#C4E1FF" ></Border>
+            <Grid Grid.Row="0" Grid.Column="3" Grid.RowSpan="4" Background="#C4E1FF" Margin="3,3,3,3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.2*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Button Grid.Row="0" Grid.Column="0" Height="40" Width="60" HorizontalAlignment="Center" FontSize="15" Background="#1e8ab7" Foreground="White" BorderBrush="LightSteelBlue" BorderThickness="1"  VerticalAlignment="Center" Click="telephotoClick">长焦</Button>
+                <Button Grid.Row="1" Grid.Column="0" Height="40" Width="60" HorizontalAlignment="Center" FontSize="15" Background="#1e8ab7" Foreground="White" BorderBrush="LightSteelBlue" BorderThickness="1"  VerticalAlignment="Center" Click="infraredRayClick">红外</Button>
+                <Button Grid.Row="2" Grid.Column="0" Height="40" Width="60" HorizontalAlignment="Center" FontSize="15" Background="#1e8ab7" Foreground="White" BorderBrush="LightSteelBlue" BorderThickness="1"  VerticalAlignment="Center" Click="SiFuClick">饲服</Button>
+                <Button Grid.Row="3" Grid.Column="0" Height="40" Width="60" HorizontalAlignment="Center" FontSize="15" Background="#1e8ab7" Foreground="White" BorderBrush="LightSteelBlue" BorderThickness="1"  VerticalAlignment="Center" Click="limitSpaceClick">限位</Button>
+                <Button Grid.Row="4" Grid.Column="0" Height="40" Width="60" HorizontalAlignment="Center" FontSize="15" Background="#1e8ab7" Foreground="White" BorderBrush="LightSteelBlue" BorderThickness="1"  VerticalAlignment="Center" Click="scanClick">扫描</Button>
+                <!--长焦start-->
+                <Grid Grid.Row="0" Grid.Column="1" Grid.RowSpan="5" Name="changjiao" Visibility="Visible">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBox Grid.Row="0" FontSize="13" HorizontalContentAlignment="left" VerticalContentAlignment="Center" Background="#C4E1FF" BorderThickness="0" IsReadOnly="True">昼光摄像机</TextBox>
+                    <WrapPanel Grid.Row="1">
+                        <TextBox FontSize="13" HorizontalContentAlignment="left" VerticalContentAlignment="Center" Background="#C4E1FF" BorderThickness="0" IsReadOnly="True" >焦距：</TextBox>
+                        <TextBox FontSize="13" HorizontalContentAlignment="left" VerticalContentAlignment="Center" Background="#C4E1FF" BorderThickness="0" IsReadOnly="True" x:Name="focalLength">0.0</TextBox>
+                        <TextBox FontSize="13" HorizontalContentAlignment="left" VerticalContentAlignment="Center" Background="#C4E1FF" BorderThickness="0" IsReadOnly="True">mm</TextBox>
+                        <Button  HorizontalAlignment="Center" Width="50" FontSize="13" Background="SteelBlue" Foreground="white" BorderBrush="LightSteelBlue" BorderThickness="1" VerticalAlignment="Center" Margin="6,0,0,0"  Click="focusDownClick" Name="focusButtonDecControl">聚焦 -</Button>
+                        <Button  HorizontalAlignment="Center" Width="50" FontSize="13" Background="SteelBlue" Foreground="white" BorderBrush="LightSteelBlue" BorderThickness="1" VerticalAlignment="Center"  Margin="10,0,0,0" Click="focusUpClick" Name="focusButtonAddControl">聚焦 +</Button>
+                    </WrapPanel>
+                    <WrapPanel Grid.Row="2">
+                        <TextBox FontSize="13" HorizontalContentAlignment="left" VerticalContentAlignment="Center" Background="#C4E1FF" BorderThickness="0" IsReadOnly="True">视图：</TextBox>
+                        <TextBox FontSize="13" HorizontalContentAlignment="left" VerticalContentAlignment="Center" Background="#C4E1FF" BorderThickness="0" IsReadOnly="True">0.0</TextBox>
+                        <TextBox FontSize="13" HorizontalContentAlignment="left" VerticalContentAlignment="Center" Background="#C4E1FF" BorderThickness="0" IsReadOnly="True">*</TextBox>
+                        <TextBox FontSize="13" HorizontalContentAlignment="left" VerticalContentAlignment="Center" Background="#C4E1FF" BorderThickness="0" IsReadOnly="True">0.0</TextBox>
+                        <Button  HorizontalAlignment="Center" Width="50" FontSize="13" Background="SteelBlue" Foreground="white" BorderBrush="LightSteelBlue" BorderThickness="1" VerticalAlignment="Center" Click="focusDownMoreClick" Name="focusDownMoreControl">变焦 -</Button>
+                        <Button  HorizontalAlignment="Center" Width="50" FontSize="13" Background="SteelBlue" Foreground="white" BorderBrush="LightSteelBlue" BorderThickness="1" VerticalAlignment="Center"  Margin="10,0,0,0" Click="focusUpMoreClick" Name="focusUpMoreControl">变焦 +</Button>
+                    </WrapPanel>
+                    <TextBox Grid.Row="3" FontSize="13" HorizontalContentAlignment="left" VerticalContentAlignment="Center" Background="#C4E1FF" BorderThickness="0" IsReadOnly="True">驱动漂移补偿</TextBox>
+                    <WrapPanel Grid.Row="4">
+                        <TextBox FontSize="13" HorizontalContentAlignment="left" VerticalContentAlignment="Center" Background="#C4E1FF" BorderThickness="0" IsReadOnly="True">方位</TextBox>
+                        <TextBox Width="30px" FontSize="13" HorizontalContentAlignment="left" VerticalContentAlignment="Center" Background="#C4E1FF" BorderThickness="1" Name="directionVlu">0</TextBox>
+                        <Grid Width="8px" Height="16px">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Button Grid.Row="0" HorizontalAlignment="Center"  Background="#C4E1FF" BorderBrush="LightSteelBlue" BorderThickness="1" VerticalAlignment="Center" Click="directionUpClick">+</Button>
+                            <Button Grid.Row="1" HorizontalAlignment="Center"  Background="#C4E1FF" BorderBrush="LightSteelBlue" BorderThickness="1" VerticalAlignment="Center" Click="directionDownClick">-</Button>
+                        </Grid>
+                        <TextBox FontSize="13" HorizontalContentAlignment="left" VerticalContentAlignment="Center" Background="#C4E1FF" BorderThickness="0" IsReadOnly="True">俯仰</TextBox>
+                        <TextBox Width="30px" FontSize="13" HorizontalContentAlignment="left" VerticalContentAlignment="Center" Background="#C4E1FF" BorderThickness="1" Name="pitchVlu">0</TextBox>
+                        <Grid Width="8px" Height="16px">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Button Grid.Row="0"  Background="#C4E1FF" BorderBrush="LightSteelBlue" BorderThickness="1"  Click="pitchUpClick">+</Button>
+                            <Button Grid.Row="1"  Background="#C4E1FF" BorderBrush="LightSteelBlue" BorderThickness="1"  Click="pitchDownClick">-</Button>
+                        </Grid>
+                    </WrapPanel>
+                </Grid>
+                <!--长焦end-->
+                <!--红外start-->
+                <Grid Grid.Row="0" Grid.Column="1" Grid.RowSpan="5" Name="hongwai" Visibility="Collapsed">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <WrapPanel Grid.Row="0">
+                        <TextBox FontSize="13" HorizontalContentAlignment="left" VerticalContentAlignment="Center" Background="#C4E1FF" BorderThickness="0" IsReadOnly="True">红外控制</TextBox>
+                        <RadioButton  FontSize="13" Click="optimalClick1_open" Name="RadioB1_open" IsChecked="True">开</RadioButton>
+                        <RadioButton  FontSize="13" Click="optimalClick2_close" Name="RadioB2_close">关</RadioButton>
+                    </WrapPanel>
+                    <WrapPanel Grid.Row="1">
+                        <TextBox FontSize="13" HorizontalContentAlignment="left" VerticalContentAlignment="Center" Background="#C4E1FF" BorderThickness="0" IsReadOnly="True">图像极性</TextBox>
+                        <RadioButton  FontSize="13" Click="optimalClick1" Name="RadioB1" IsChecked="True">黑热</RadioButton>
+                        <RadioButton  FontSize="13" Click="optimalClick2" Name="RadioB2">白热</RadioButton>
+                    </WrapPanel>
+                    <WrapPanel Grid.Row="2">
+                        <TextBox FontSize="13" HorizontalContentAlignment="left" VerticalContentAlignment="Center" Background="#C4E1FF" BorderThickness="0" IsReadOnly="True">图像矫正</TextBox>
+                        <RadioButton  FontSize="13" Click="optimalClick3" Name="RadioB3" IsChecked="True">对空矫正</RadioButton>
+                        <RadioButton  FontSize="13" Click="optimalClick4" Name="RadioB4">挡板矫正</RadioButton>
+                    </WrapPanel>
+                    <WrapPanel Grid.Row="3">
+                        <TextBox FontSize="13" HorizontalContentAlignment="left" VerticalContentAlignment="Center" Background="#C4E1FF" BorderThickness="0" IsReadOnly="True">坏元维护</TextBox>
+                        <RadioButton  FontSize="13" Click="optimalClick5" Name="RadioB5" IsChecked="True">搜索坏元</RadioButton>
+                        <RadioButton  FontSize="13" Click="optimalClick6" Name="RadioB6">存储信息</RadioButton>
+                    </WrapPanel>
+                    <TextBox Grid.Row="4" FontSize="13" HorizontalContentAlignment="left" VerticalContentAlignment="Center" Background="#C4E1FF" BorderThickness="0" IsReadOnly="True">红外摄像机</TextBox>
+                    <WrapPanel Grid.Row="5">
+                        <TextBox FontSize="13" HorizontalContentAlignment="left" VerticalContentAlignment="Center" Background="#C4E1FF" BorderThickness="0" IsReadOnly="True">焦距：</TextBox>
+                        <TextBox FontSize="13" HorizontalContentAlignment="left" VerticalContentAlignment="Center" Background="#C4E1FF" BorderThickness="0" IsReadOnly="True" x:Name="CCDFocalLengthValue">0.0</TextBox>
+                        <TextBox FontSize="13" HorizontalContentAlignment="left" VerticalContentAlignment="Center" Background="#C4E1FF" BorderThickness="0" IsReadOnly="True">mm</TextBox>
+                        <Button  HorizontalAlignment="Center" Width="50" FontSize="13" Background="SteelBlue" Foreground="white" BorderBrush="LightSteelBlue" BorderThickness="1" VerticalAlignment="Center" Margin="6,0,0,0" Click="hfocusDownClick">聚焦 -</Button>
+                        <Button  HorizontalAlignment="Center" Width="50" FontSize="13" Background="SteelBlue" Foreground="white" BorderBrush="LightSteelBlue" BorderThickness="1" VerticalAlignment="Center"  Margin="10,0,0,0" Click="hfocusUpClick">聚焦 +</Button>
+                    </WrapPanel>
+                    <WrapPanel Grid.Row="6">
+                        <TextBox FontSize="13" HorizontalContentAlignment="left" VerticalContentAlignment="Center" Background="#C4E1FF" BorderThickness="0" IsReadOnly="True">视图：</TextBox>
+                        <TextBox FontSize="13" HorizontalContentAlignment="left" VerticalContentAlignment="Center" Background="#C4E1FF" BorderThickness="0" IsReadOnly="True" x:Name="InfraredFocalLength">0.0</TextBox>
+                        <TextBox FontSize="13" HorizontalContentAlignment="left" VerticalContentAlignment="Center" Background="#C4E1FF" BorderThickness="0" IsReadOnly="True">*</TextBox>
+                        <TextBox FontSize="13" HorizontalContentAlignment="left" VerticalContentAlignment="Center" Background="#C4E1FF" BorderThickness="0" IsReadOnly="True">0.0</TextBox>
+                        <Button  HorizontalAlignment="Center" Width="50" FontSize="13" Background="SteelBlue" Foreground="white" BorderBrush="LightSteelBlue" BorderThickness="1" VerticalAlignment="Center" Click="hfocusDownMoreClick">变焦 -</Button>
+                        <Button  HorizontalAlignment="Center" Width="50" FontSize="13" Background="SteelBlue" Foreground="white" BorderBrush="LightSteelBlue" BorderThickness="1" VerticalAlignment="Center"  Margin="10,0,0,0" Click="hfocusUpMoreClick">变焦 +</Button>
+                    </WrapPanel>
+                </Grid>
+                <!--红外end-->
+                <!--伺服start-->
+                <Grid Grid.Row="0" Grid.Column="1" Grid.RowSpan="5" Name="sifu" Visibility="Collapsed">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <WrapPanel Grid.Row="0">
+                        <TextBox FontSize="13" HorizontalContentAlignment="left" VerticalContentAlignment="Center" Background="#C4E1FF" BorderThickness="0" IsReadOnly="True">驱动开关</TextBox>
+                        <RadioButton  FontSize="13" Click="sfoptimalClick1_open" Name="RadioBu1_open" IsChecked="True">开</RadioButton>
+                        <RadioButton  FontSize="13" Click="sfoptimalClick2_close" Name="RadioBu2_close">关</RadioButton>
+                    </WrapPanel>
+                    <WrapPanel Grid.Row="1">
+                        <TextBox FontSize="13" HorizontalContentAlignment="left" VerticalContentAlignment="Center" Background="#C4E1FF" BorderThickness="0" IsReadOnly="True">跟踪算法</TextBox>
+                        <RadioButton  FontSize="13" Click="sfoptimalClick1" Name="RadioBu1" IsChecked="True">相关跟踪</RadioButton>
+                        <RadioButton  FontSize="13" Click="sfoptimalClick2" Name="RadioBu2">核心跟踪</RadioButton>
+                    </WrapPanel>
+                    <TextBox Grid.Row="2" FontSize="13" HorizontalContentAlignment="left" VerticalContentAlignment="Center" Background="#C4E1FF" BorderThickness="0" IsReadOnly="True">跟踪视频</TextBox>
+                    <WrapPanel Grid.Row="3">
+                        <RadioButton  FontSize="13" Click="sfoptimalClick3" Name="RadioBu3" IsChecked="True">长焦可见光</RadioButton>
+                        <RadioButton  FontSize="13" Click="sfoptimalClick4" Name="RadioBu4">红外</RadioButton>
+                        <RadioButton  FontSize="13" Click="sfoptimalClick4_1" Name="RadioBu4_1">广角可见光</RadioButton>
+                    </WrapPanel>
+                </Grid>
+                <!--伺服end-->
+                <!--限位start-->
+                <Grid Grid.Row="0" Grid.Column="1" Grid.RowSpan="5" Name="xianwei" Visibility="Collapsed">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBox Grid.Row="0" FontSize="13" HorizontalContentAlignment="left" VerticalContentAlignment="Center" Background="#C4E1FF" BorderThickness="0" IsReadOnly="True">软件限位</TextBox>
+                    <WrapPanel Grid.Row="1">
+                        <TextBox FontSize="13" HorizontalContentAlignment="left" VerticalContentAlignment="Center" Background="#C4E1FF" BorderThickness="0" IsReadOnly="True">水平左</TextBox>
+                        <TextBox Width="30px" FontSize="13" HorizontalContentAlignment="left" VerticalContentAlignment="Center" Background="#C4E1FF" BorderThickness="1" IsReadOnly="True" Name="horizontalLeftText">0</TextBox>
+                        <Grid Width="8px" Height="16px">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Button Grid.Row="0" HorizontalAlignment="Center"  Background="#C4E1FF" BorderBrush="LightSteelBlue" BorderThickness="1" VerticalAlignment="Center" Click="horizontalLeftUpClick">+</Button>
+                            <Button Grid.Row="1" HorizontalAlignment="Center"  Background="#C4E1FF" BorderBrush="LightSteelBlue" BorderThickness="1" VerticalAlignment="Center" Click="horizontalLeftDownClick">-</Button>
+                        </Grid>
+                        <TextBox FontSize="13" HorizontalContentAlignment="left" VerticalContentAlignment="Center" Background="#C4E1FF" BorderThickness="0" IsReadOnly="True">水平右</TextBox>
+                        <TextBox Width="30px" FontSize="13" HorizontalContentAlignment="left" VerticalContentAlignment="Center" Background="#C4E1FF" BorderThickness="1" IsReadOnly="True" Name="horizontalRightText">0</TextBox>
+                        <Grid Width="8px" Height="16px">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Button Grid.Row="0"  Background="#C4E1FF" BorderBrush="LightSteelBlue" BorderThickness="1"  Click="horizontalRightUpClick">+</Button>
+                            <Button Grid.Row="1"  Background="#C4E1FF" BorderBrush="LightSteelBlue" BorderThickness="1"  Click="horizontalRightDownClick">-</Button>
+                        </Grid>
+                    </WrapPanel>
+                    <WrapPanel Grid.Row="2">
+                        <TextBox FontSize="13" HorizontalContentAlignment="left" VerticalContentAlignment="Center" Background="#C4E1FF" BorderThickness="0" IsReadOnly="True">俯仰上</TextBox>
+                        <TextBox Width="30px" FontSize="13" HorizontalContentAlignment="left" VerticalContentAlignment="Center" Background="#C4E1FF" BorderThickness="1" IsReadOnly="True" Name="pitchUpText">0</TextBox>
+                        <Grid Width="8px" Height="16px">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Button Grid.Row="0" HorizontalAlignment="Center"  Background="#C4E1FF" BorderBrush="LightSteelBlue" BorderThickness="1" VerticalAlignment="Center" Click="pitchingUpUpClick">+</Button>
+                            <Button Grid.Row="1" HorizontalAlignment="Center"  Background="#C4E1FF" BorderBrush="LightSteelBlue" BorderThickness="1" VerticalAlignment="Center" Click="pitchingUpDownClick">-</Button>
+                        </Grid>
+                        <TextBox FontSize="13" HorizontalContentAlignment="left" VerticalContentAlignment="Center" Background="#C4E1FF" BorderThickness="0" IsReadOnly="True">俯仰下</TextBox>
+                        <TextBox Width="30px" FontSize="13" HorizontalContentAlignment="left" VerticalContentAlignment="Center" Background="#C4E1FF" BorderThickness="1" IsReadOnly="True" Name="pitchDownText">0</TextBox>
+                        <Grid Width="8px" Height="16px">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Button Grid.Row="0"  Background="#C4E1FF" BorderBrush="LightSteelBlue" BorderThickness="1"  Click="pitchingDownUpClick">+</Button>
+                            <Button Grid.Row="1"  Background="#C4E1FF" BorderBrush="LightSteelBlue" BorderThickness="1"  Click="pitchingDownDownClick">-</Button>
+                        </Grid>
+                    </WrapPanel>
+                </Grid>
+                <!--限位end-->
+                <!--扫描start-->
+                <Grid Grid.Row="0" Grid.Column="1" Grid.RowSpan="5" Name="saomiao" Visibility="Collapsed">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBox Grid.Row="0" FontSize="13" HorizontalContentAlignment="left" VerticalContentAlignment="Center" Background="#C4E1FF" BorderThickness="0" IsReadOnly="True">方位扫描</TextBox>
+                    <TextBox Grid.Row="1" FontSize="13" HorizontalContentAlignment="left" VerticalContentAlignment="Center" Background="#C4E1FF" BorderThickness="0" IsReadOnly="True">两个扫描边界的角度</TextBox>
+                    <WrapPanel Grid.Row="2">
+                        <TextBox FontSize="13" HorizontalContentAlignment="left" VerticalContentAlignment="Center" Background="#C4E1FF" BorderThickness="0">左：</TextBox>
+                        <TextBox Width="30px" FontSize="13" HorizontalContentAlignment="left" VerticalContentAlignment="Center" Background="#C4E1FF" BorderThickness="1" Name="leftLimitAngleText">45</TextBox>
+                        <Grid Width="8px" Height="16px">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Button Grid.Row="0" HorizontalAlignment="Center"  Background="#C4E1FF" BorderBrush="LightSteelBlue" BorderThickness="1" VerticalAlignment="Center" Click="leftUpClick">+</Button>
+                            <Button Grid.Row="1" HorizontalAlignment="Center"  Background="#C4E1FF" BorderBrush="LightSteelBlue" BorderThickness="1" VerticalAlignment="Center" Click="leftDownClick">-</Button>
+                        </Grid>
+                        <TextBox FontSize="13" HorizontalContentAlignment="left" VerticalContentAlignment="Center" Background="#C4E1FF" BorderThickness="0">右：</TextBox>
+                        <TextBox Width="30px" FontSize="13" HorizontalContentAlignment="left" VerticalContentAlignment="Center" Background="#C4E1FF" BorderThickness="1" Name="rightLimitAngleText">45</TextBox>
+                        <Grid Width="8px" Height="16px">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Button Grid.Row="0"  Background="#C4E1FF" BorderBrush="LightSteelBlue" BorderThickness="1"  Click="rightUpClick">+</Button>
+                            <Button Grid.Row="1"  Background="#C4E1FF" BorderBrush="LightSteelBlue" BorderThickness="1"  Click="rightDownClick">-</Button>
+                        </Grid>
+                    </WrapPanel>
+                    <WrapPanel Grid.Row="3">
+                        <TextBox FontSize="13" HorizontalContentAlignment="left" VerticalContentAlignment="Center" Background="#C4E1FF" BorderThickness="0" IsReadOnly="True">扫描速度相当于操纵摇杆时的最大速度的</TextBox>
+                        <TextBox Width="30px" FontSize="13" HorizontalContentAlignment="left" VerticalContentAlignment="Center" Background="#C4E1FF" BorderThickness="1" Name="sweepSpeedText">30</TextBox>
+                        <Grid Width="8px" Height="16px">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Button Grid.Row="0" HorizontalAlignment="Center"  Background="#C4E1FF" BorderBrush="LightSteelBlue" BorderThickness="1" VerticalAlignment="Center" Click="speedUpClick">+</Button>
+                            <Button Grid.Row="1" HorizontalAlignment="Center"  Background="#C4E1FF" BorderBrush="LightSteelBlue" BorderThickness="1" VerticalAlignment="Center" Click="speedDownClick">-</Button>
+                        </Grid>
+                        <TextBox FontSize="13" HorizontalContentAlignment="left" VerticalContentAlignment="Center" Background="#C4E1FF" BorderThickness="0" IsReadOnly="True">%</TextBox>
+                    </WrapPanel>
+                    <Button Grid.Row="4" Height="30" Width="50" FontSize="13" Background="SteelBlue" Foreground="white" Margin="0px 0px 80px 0px " Click="startClick">开始</Button>
+                    <Button Grid.Row="4" Height="30" Width="50" FontSize="13" Background="SteelBlue" Foreground="white" Margin="0px 0px -80px 0px " Click="cancelClick">取消</Button>
+                </Grid>
+                <!--扫描end-->
+            </Grid>
+        </Grid>
+
+
+        <Grid Grid.Row="2" VerticalAlignment="Center" Background="#FF007ACC">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.18*"/>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="0.1*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="0.1*"/>
+                <ColumnDefinition Width="0.6*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="0.02*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="0.02*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="0.02*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="0.2*"/>
+                <ColumnDefinition Width="0.05*"/>
+                <ColumnDefinition Width="0.02*"/>
+                <ColumnDefinition Width="0.05*"/>
+                <ColumnDefinition Width="0.02*"/>
+                <ColumnDefinition Width="0.05*"/>
+                <ColumnDefinition Width="0.02*"/>
+                <ColumnDefinition Width="0.05*"/>
+                <ColumnDefinition Width="0.02*"/>
+                <ColumnDefinition Width="0.05*"/>
+                <ColumnDefinition Width="0.02*"/>
+                <ColumnDefinition Width="0.05*"/>
+                <ColumnDefinition Width="0.02*"/>
+                <ColumnDefinition Width="0.05*"/>
+                <ColumnDefinition Width="0.4*"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.Column="0" FontSize="15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FF007ACC" Foreground="White" BorderThickness="0" IsReadOnly="True">就绪</TextBox>
+            <TextBox Grid.Column="1" FontSize="15" IsReadOnly="True" BorderThickness="0" VerticalContentAlignment="Center" HorizontalAlignment="Left" Background="#FF007ACC" Foreground="White">用户名：Test</TextBox>
+            <TextBox Grid.Column="2" FontSize="15" IsReadOnly="True" BorderThickness="0" VerticalContentAlignment="Center" Background="#FF007ACC" Foreground="#FF007ACC" Name="test">屏幕坐标X:</TextBox>
+            <TextBox Grid.Column="3" FontSize="15" BorderThickness="0" Name="mousePositionX" IsReadOnly="True" HorizontalAlignment="Center" VerticalContentAlignment="Center"  Foreground="#FF007ACC" Background="#FF007ACC"></TextBox>
+            <TextBox Grid.Column="4" FontSize="15" IsReadOnly="True" BorderThickness="0" VerticalContentAlignment="Center" Background="#FF007ACC" Foreground="#FF007ACC" >,Y:</TextBox>
+            <TextBox Grid.Column="5" FontSize="15" BorderThickness="0" Name="mousePositionY" IsReadOnly="True" HorizontalAlignment="Center" VerticalContentAlignment="Center" Foreground="#FF007ACC" Background="#FF007ACC"  VerticalAlignment="Center"></TextBox>
+            <Border Grid.Column="7" BorderBrush="#E0E0E0" BorderThickness="1">
+                <Image Source="Image/AISGreen.png" ToolTip="AIS连接正常" Name="baojingAIS"></Image>
+            </Border>
+            <Border Grid.Column="9" BorderBrush="#E0E0E0" BorderThickness="1">
+                <Image Source="Image/RadarGreen.png" ToolTip="雷达1连接正常" Name="baojingleida1"></Image>
+            </Border>
+            <Border Grid.Column="11" BorderBrush="#E0E0E0" BorderThickness="1">
+                <Image Source="Image/RadarGreen.png" ToolTip="雷达2连接正常" Name="baojingleida2"></Image>
+            </Border>
+            <Border Grid.Column="13" BorderBrush="#E0E0E0" BorderThickness="1">
+                <Image Source="image/FutionGreen.png" ToolTip="融合连接正常"  Name="baojingronghe"></Image>
+            </Border>
+
+            <Image Grid.Column="15" Source="Image/WarnGreen.png" ToolTip="平台碰撞" Margin="5"  Name="baojingquyu1"></Image>
+
+            <Image Grid.Column="17" Source="Image/WarnGreen.png" ToolTip="驱逐区" Margin="5" Name="baojingquyu2"></Image>
+
+            <Image Grid.Column="19" Source="Image/WarnGreen.png" ToolTip="警戒区" Margin="5" Name="baojingquyu3"></Image>
+
+            <Image Grid.Column="21" Source="Image/WarnGreen.png" ToolTip="预警区" Margin="5" Name="baojingquyu4"></Image>
+
+            <Image Grid.Column="23" Source="Image/WarnGreen.png" ToolTip="禁止驶入区" Margin="5" Name="baojingquyu5"></Image>
+
+            <Image Grid.Column="25" Source="Image/WarnGreen.png" ToolTip="管道保护区" Margin="5" Name="baojingquyu6"></Image>
+
+            <Image Grid.Column="27" Source="Image/WarnGreen.png" ToolTip="偏航报警" Margin="5" Name="baojingquyu7"></Image>
+        </Grid>
+    </Grid>
+</Page>

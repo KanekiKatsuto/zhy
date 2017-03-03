@@ -1,0 +1,122 @@
+﻿<Window x:Class="MaritimeSecurityMonitoring.DefenseCircleSetting"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="防护圈参数设置"
+        Width="450" MinWidth="450" MaxWidth="450" Height="360" MinHeight="320" MaxHeight="360" WindowStyle="None" ResizeMode="NoResize" MouseLeftButtonDown="dragMoveWindow" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" BorderBrush="#1e8ab7" BorderThickness="4"></Border>
+        <Label FontSize="17" Foreground="White" Background="#1e8ab7" HorizontalContentAlignment="Left" VerticalContentAlignment="Center">报警管理>防护圈参数设置</Label>
+        <Button Height="22" Width="22" Margin="2" HorizontalAlignment="Right" BorderThickness="0" Click="closeWindowClick">
+            <Button.Background>
+                <ImageBrush ImageSource="Image\Close.png" Stretch="Fill"></ImageBrush>
+            </Button.Background>
+        </Button>
+        <Grid Grid.Row="1" Width="Auto" Height="Auto" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="0.5*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1.5*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="1.2*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Row="0" Grid.Column="1" Background="White" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="1.3*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0"  Width="120" Height="40" FontSize="17"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left">圈层中心坐标</Label>
+                    <WrapPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
+                        <Label Grid.Row="0" Grid.Column="1"  FontSize="16" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="以平台坐标为中心" />
+                    </WrapPanel>
+                </Grid>
+
+                <Grid Grid.Row="1" Grid.Column="1" Background="White" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="1.3*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Width="120" Height="40" FontSize="17" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left">圈层半径</Label>
+                    <WrapPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
+                        <TextBox Grid.Row="0" Grid.Column="1" Width="90" Height="30" FontSize="17" Margin="0,0,15,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="TextBox_TextChanged" Name="circleRadius">9000</TextBox>
+                        <Label Grid.Row="0" Grid.Column="1" FontSize="16" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="米" />
+                    </WrapPanel>
+                </Grid>
+
+                <Grid Grid.Row="2" Grid.Column="1" Background="White">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="1.3*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Width="120" Height="40" FontSize="17" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left">圈层颜色</Label>
+                    <WrapPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
+                        <ComboBox Grid.Row="0" Grid.Column="1" Background="#E0E0E0" FontSize="16" Height="30" Width="90" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Name="circleColor">
+                            <ComboBoxItem IsSelected="True">Red</ComboBoxItem>
+                            <ComboBoxItem>Blue</ComboBoxItem>
+                            <ComboBoxItem>Green</ComboBoxItem>
+                            <ComboBoxItem>Yellow</ComboBoxItem>
+                        </ComboBox>
+                        <Label Grid.Row="0" Grid.Column="1"  FontSize="16" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="" />
+                    </WrapPanel>
+                </Grid>
+
+                <Grid Grid.Row="3" Grid.Column="1" Background="White">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="1.3*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Width="120" Height="40" FontSize="17" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left">圈层命名</Label>
+                    <WrapPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
+                        <TextBox Grid.Row="0" Grid.Column="1" Width="90" Height="30" FontSize="17" Margin="0,0,15,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="TextBox_TextChanged"  Name="circleName"></TextBox>
+                        <Label Grid.Row="0" Grid.Column="1"  FontSize="16" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="" />
+                    </WrapPanel>
+                </Grid>
+                <Grid Grid.Row="4" Grid.Column="1" Background="White">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="1.3*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Width="120" Height="40" FontSize="17" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left">报警等级</Label>
+                    <WrapPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
+                        <ComboBox Grid.Row="0" Grid.Column="1" Background="#E0E0E0" FontSize="16" Height="30" Width="90" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Name="circleRank">
+                            <ComboBoxItem IsSelected="True">1</ComboBoxItem>
+                            <ComboBoxItem>2</ComboBoxItem>
+                            <ComboBoxItem>3</ComboBoxItem>
+                            <ComboBoxItem>4</ComboBoxItem>
+                            <ComboBoxItem>5</ComboBoxItem>
+                        </ComboBox>
+                        <Label Grid.Row="0" Grid.Column="1"  FontSize="16" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="" />
+                    </WrapPanel>
+                </Grid>
+                <Grid Grid.Row="5" Grid.Column="1" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Row="0" Grid.Column="0"  Width ="90" Height="30" Foreground="White"  FontSize="18" Background="#1e8ab7" VerticalContentAlignment="Center" Click="saveClick" >确定</Button>
+                    <Button Grid.Row="0" Grid.Column="1"  Width ="90" Height="30" Foreground="White"  FontSize="18" Background="#1e8ab7" VerticalContentAlignment="Center" Click="cancelClick" >取消</Button>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

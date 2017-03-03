@@ -1,0 +1,20 @@
+﻿<Window x:Class="MaritimeSecurityMonitoring.AutomaticLinkage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         Title="防护圈参数设置" Width="450" MinWidth="450" MaxWidth="450" Height="320" MinHeight="320" MaxHeight="320" WindowStyle="None" ResizeMode="NoResize" MouseLeftButtonDown="dragMoveWindow">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" BorderBrush="#1e8ab7" BorderThickness="4"></Border>
+        <Label Background="#1e8ab7" Foreground="White" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontSize="17">联动控制>自动控制</Label>
+        <Button  HorizontalAlignment="Right" Height="22" Width="22" BorderThickness="0" Margin="2" Click="closeWindowClick">
+            <Button.Background>
+                <ImageBrush ImageSource="Image\Close.png" Stretch="Fill"></ImageBrush>
+            </Button.Background>
+        </Button>
+        <MediaElement Grid.Row="1" Source="Video\0_2.mp4" Stretch="Fill" Margin="3,0,3,3"></MediaElement>
+    </Grid>
+</Window>

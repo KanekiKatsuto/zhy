@@ -1,0 +1,58 @@
+﻿<Window x:Class="MaritimeSecurityMonitoring.CaptureImages"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="图片抓取" Width="600" MaxWidth="600" MinWidth="600" Height="440" MaxHeight="440" MinHeight="440" WindowStyle="None" ResizeMode="NoResize" MouseLeftButtonDown="dragMoveWindow">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" BorderBrush="#1e8ab7" BorderThickness="4"></Border>
+        <Label Background="#1e8ab7" FontSize="17" Foreground="White" HorizontalContentAlignment="Left" VerticalContentAlignment="Center">视频处理>图片抓取</Label>
+        <Button Height="22" Width="22" Margin="2" HorizontalAlignment="Right" BorderThickness="0"  Click="closeWindowClick">
+            <Button.Background>
+                <ImageBrush ImageSource="Image\Close.png" Stretch="Fill"></ImageBrush>
+            </Button.Background>
+        </Button>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.3*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.7*"/>
+                <RowDefinition Height="0.1*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.3*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="1.7*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="0.3*"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Row="1" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="5" Background="#C4E1FF" BorderBrush="Black" BorderThickness="2">
+                <Image Grid.Row="1" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="5" Source="Image/CaptureIPicture.png" Stretch="Fill" Name="Picture" ></Image>
+            </Border>
+            <Button Grid.Row="6" Grid.Column="1" Height="45" Width="45" BorderThickness="0" ToolTip="图片保存" Click="saveClick">
+                <Image Width="45" Source="Image\Saves.png"/>
+            </Button>
+            <Button Grid.Row="6" Grid.Column="2" Height="45" Width="45" BorderThickness="0" ToolTip="舷号识别" Click="identifyClick">
+                <Image Width="45" Source="Image\Identify.png"/>
+            </Button>
+            <TextBox Grid.Row="6" Grid.Column="3" Width="100" Height="35" FontSize="14" Foreground="#1e8ab7" Margin="0,0,0.4,0" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" BorderBrush="#1e8ab7" BorderThickness="3" Name="identifyResult" >识别结果</TextBox>
+            <Button Grid.Row="6" Grid.Column="4" Height="45" Width="45" BorderThickness="0" ToolTip="确定" Click="yesClick">
+                <Image Width="45" Source="Image\yes.png"/>
+            </Button>
+            <Button Grid.Row="6" Grid.Column="5" Height="45" Width="45" BorderThickness="0" ToolTip="取消" Click="cancelClick">
+                <Image Width="45" Source="Image\cancals.png"/>
+            </Button>
+        </Grid>
+    </Grid>
+</Window>
+
