@@ -42,18 +42,6 @@ namespace MaritimeSecurityMonitoring.MainInterfacePage
 
         private DispatcherTimer timer = new DispatcherTimer();
 
-        CollectionViewSource allTargetView = new CollectionViewSource();
-        CollectionViewSource AISTargetView = new CollectionViewSource();
-        CollectionViewSource radarTargetView = new CollectionViewSource();
-        CollectionViewSource mixTargetView = new CollectionViewSource();
-        CollectionViewSource warnTargetView = new CollectionViewSource();
-
-        ObservableCollection<AllTarget> allInformation = new ObservableCollection<AllTarget>();
-        ObservableCollection<AISTarget> AISInformation = new ObservableCollection<AISTarget>();
-        ObservableCollection<RadarTarget> radarInformation = new ObservableCollection<RadarTarget>();
-        ObservableCollection<MixTarget> mixInformation = new ObservableCollection<MixTarget>();
-        ObservableCollection<WarnTarget> warnInformation = new ObservableCollection<WarnTarget>();
-
         List<AllTarget> allList = new List<AllTarget>();
         List<AISTarget> AISList = new List<AISTarget>();
         List<RadarTarget> radarList = new List<RadarTarget>();
@@ -404,7 +392,7 @@ namespace MaritimeSecurityMonitoring.MainInterfacePage
                         String dateTypes = "adddata";
                         String warnTypes = "nowarn";
 
-                        for (int i = 0; i < mixListView.Items.Count; i++)//判断输入的数据是新添加的还是已有目标的更新
+                        for (int i = 0; i < mixDataGrid.Items.Count; i++)//判断输入的数据是新添加的还是已有目标的更新
                         {
                             if (mixList[i].mixBatchNumber == (fus.lFusBatchID).ToString())
                             {
@@ -415,7 +403,7 @@ namespace MaritimeSecurityMonitoring.MainInterfacePage
                         if ((int)(fus.ucAlarmNum) != 0)//判断是否具有报警相关信息
                         {
                             warnTypes = "addwarn";
-                            for (int i = 0; i < warnListView.Items.Count; i++)//判断输入的警告是新添加还是也已有警告的跟新
+                            for (int i = 0; i < warnDataGrid.Items.Count; i++)//判断输入的警告是新添加还是也已有警告的跟新
                             {
                                 if (warnList[i].mixBatchNumber == (fus.lFusBatchID).ToString())
                                 {
@@ -445,9 +433,7 @@ namespace MaritimeSecurityMonitoring.MainInterfacePage
                                 //sailingStatus = (ais.ucSailStatus).ToString(),
                             };
                             mixList.Add(mt);
-                            mixInformation.Add(mt);
-                            mixTargetView.Source = mixInformation;
-                            mixListView.DataContext = mixTargetView;
+                            mixDataGrid.ItemsSource = mixList;
 
                             AllTarget at = new AllTarget()//添加全部目标对象
                             {
@@ -467,9 +453,7 @@ namespace MaritimeSecurityMonitoring.MainInterfacePage
                                 //sailingStatus = (ais.ucSailStatus).ToString(),
                             };
                             allList.Add(at);
-                            allInformation.Add(at);
-                            allTargetView.Source = allInformation;
-                            allListView.DataContext = allTargetView;
+                            allDataGrid.ItemsSource=allList;
 
                             float dNorthCourse = (float)(fus.dNorthCourse);
                             Target fu = new Target(targetId, dNorthCourse, fus.fSpeed);
@@ -494,7 +478,7 @@ namespace MaritimeSecurityMonitoring.MainInterfacePage
                         if (dateTypes == "updata")//更新列表对象
                         {
                             int id = 0;
-                            for (int i = 0; i < mixListView.Items.Count; i++)//对已有列表遍历，查找对应数据行
+                            for (int i = 0; i < mixDataGrid.Items.Count; i++)//对已有列表遍历，查找对应数据行
                             {
                                 if (mixList[i].mixBatchNumber == (fus.lFusBatchID).ToString())
                                 {
@@ -514,8 +498,8 @@ namespace MaritimeSecurityMonitoring.MainInterfacePage
                                 };
                             };
 
-                            
-                            for (int i = 0; i < allListView.Items.Count; i++)
+
+                            for (int i = 0; i < allDataGrid.Items.Count; i++)
                             {
                                 if (allList[i].batchNumber == (fus.lFusBatchID).ToString())
                                 {             
@@ -534,8 +518,8 @@ namespace MaritimeSecurityMonitoring.MainInterfacePage
                                     //allList[i].sailingStatus = (ais.ucSailStatus).ToString();
                                 };
                             };
-                            mixListView.Items.Refresh();
-                            allListView.Items.Refresh();
+                            mixDataGrid.Items.Refresh();
+                            allDataGrid.Items.Refresh();
 
                             float dNorthCourse = (float)(fus.dNorthCourse);
                             Target fu = new Target(id, dNorthCourse, fus.fSpeed);
@@ -588,18 +572,17 @@ namespace MaritimeSecurityMonitoring.MainInterfacePage
                                 alarmType = AlarmNumtype,
                                 alarmContent = "船舶[" + (fus.lFusBatchID).ToString() + "]" + AlarmNumtype,
                                 isCheck = false,
+                                isConfirmed = false,
                             };
                             warnList.Add(wt);
-                            warnInformation.Add(wt);
-                            warnTargetView.Source = warnInformation;
-                            warnListView.DataContext = warnTargetView;
+                            warnDataGrid.ItemsSource=warnList;
 
-                            warnListView.Items.Refresh();
+                            warnDataGrid.Items.Refresh();
                         };
 
                         if (warnTypes == "updatawarn")//更新报警数据
                         {
-                            for (int i = 0; i < warnListView.Items.Count; i++)//修改已有数据中的告警信息
+                            for (int i = 0; i < warnDataGrid.Items.Count; i++)//修改已有数据中的告警信息
                             {
                                 if (mixList[i].mixBatchNumber == (fus.lFusBatchID).ToString())
                                 {
@@ -630,7 +613,7 @@ namespace MaritimeSecurityMonitoring.MainInterfacePage
                                     warnList[i].isCheck = false;
                                 };
                             };
-                            warnListView.Items.Refresh();
+                            warnDataGrid.Items.Refresh();
                         };
 
                     }));
@@ -642,7 +625,7 @@ namespace MaritimeSecurityMonitoring.MainInterfacePage
                     {
                         String dateType = "adddata";
 
-                        for (int i = 0; i < AISListView.Items.Count; i++)//判断添加新数据还是更新数据
+                        for (int i = 0; i < AISDataGrid.Items.Count; i++)//判断添加新数据还是更新数据
                         {
                             if (AISList[i].MMSI == (AIS.MMSI).ToString())
                             {
@@ -669,9 +652,7 @@ namespace MaritimeSecurityMonitoring.MainInterfacePage
                                 sailingStatus = (AIS.SailStatus).ToString(),
                             };
                             AISList.Add(at);
-                            AISInformation.Add(at);
-                            AISTargetView.Source = AISInformation;
-                            AISListView.DataContext = AISTargetView;
+                            AISDataGrid.ItemsSource=AISList;
 
                             AllTarget allt = new AllTarget()//添加全部目标列表
                             {
@@ -691,9 +672,7 @@ namespace MaritimeSecurityMonitoring.MainInterfacePage
                                 sailingStatus = (AIS.SailStatus).ToString(),
                             };
                             allList.Add(allt);
-                            allInformation.Add(allt);
-                            allTargetView.Source = allInformation;
-                            allListView.DataContext = allTargetView;
+                            allDataGrid.ItemsSource=allList;
 
                             Target obj = new Target(targetId, AIS.fDirectCourse, AIS.fDirectSpeed);
                             yimaEncCtrl.AddAISTarget(obj, AIS.dLong, AIS.dLat);//添加海图目标
@@ -702,7 +681,7 @@ namespace MaritimeSecurityMonitoring.MainInterfacePage
                         if (dateType == "updata")//更新AIS数据
                         {
                             int id = 0;
-                            for (int i = 0; i < AISListView.Items.Count; i++)
+                            for (int i = 0; i < AISDataGrid.Items.Count; i++)
                             {
                                 if (AISList[i].MMSI == (AIS.MMSI).ToString())//更新AIS列表
                                 {
@@ -722,7 +701,7 @@ namespace MaritimeSecurityMonitoring.MainInterfacePage
                                 };
                             };
 
-                            for (int i = 0; i < allListView.Items.Count; i++)//更新所有目标列表
+                            for (int i = 0; i < allDataGrid.Items.Count; i++)//更新所有目标列表
                             {
                                 if (allList[i].MMSI == (AIS.MMSI).ToString())
                                 {
@@ -740,8 +719,8 @@ namespace MaritimeSecurityMonitoring.MainInterfacePage
                                     allList[i].sailingStatus = (AIS.SailStatus).ToString();
                                 };
                             };
-                            AISListView.Items.Refresh();
-                            allListView.Items.Refresh();
+                            AISDataGrid.Items.Refresh();
+                            allDataGrid.Items.Refresh();
 
                             Target obj = new Target(id, AIS.fDirectCourse, AIS.fDirectSpeed);
                             yimaEncCtrl.UpdateAISTarget(obj, AIS.dLong, AIS.dLat);//更新海图AIS对象
@@ -756,7 +735,7 @@ namespace MaritimeSecurityMonitoring.MainInterfacePage
                  {
                      String dateType = "adddata";
 
-                     for (int i = 0; i < radarListView.Items.Count; i++)//判断添加数据还是更新数据
+                     for (int i = 0; i < radarDataGrid.Items.Count; i++)//判断添加数据还是更新数据
                      {
                          if (radarList[i].batchNumber == (RdD1.lTargetNo).ToString())
                          {
@@ -780,9 +759,7 @@ namespace MaritimeSecurityMonitoring.MainInterfacePage
                              steeringAngle = (RdD1.ulTargetCourse).ToString(),
                          };
                          radarList.Add(rt);
-                         radarInformation.Add(rt);
-                         radarTargetView.Source = radarInformation;
-                         radarListView.DataContext = radarTargetView;
+                         radarDataGrid.ItemsSource=radarList;
 
                          AllTarget at = new AllTarget()//添加所有数据
                          {
@@ -802,9 +779,7 @@ namespace MaritimeSecurityMonitoring.MainInterfacePage
                              //sailingStatus = (ais.ucSailStatus).ToString(),
                          };
                          allList.Add(at);
-                         allInformation.Add(at);
-                         allTargetView.Source = allInformation;
-                         allListView.DataContext = allTargetView;
+                         allDataGrid.ItemsSource=allList;
 
                          Target radar = new Target(targetId, RdD1.ulTargetCourse, RdD1.ulTargetSpeed);
                          radar.RadarID = radarId;
@@ -815,7 +790,7 @@ namespace MaritimeSecurityMonitoring.MainInterfacePage
                      {
                          int id1 = 0;
                          int id2 = 0;
-                         for (int i = 0; i < radarListView.Items.Count; i++)//更新雷达列表
+                         for (int i = 0; i < radarDataGrid.Items.Count; i++)//更新雷达列表
                          {
                              if (radarList[i].batchNumber == (RdD1.lTargetNo).ToString())
                              {                
@@ -830,7 +805,7 @@ namespace MaritimeSecurityMonitoring.MainInterfacePage
                              };
                          };
 
-                         for (int i = 0; i < allListView.Items.Count; i++)//更新所有目标列表
+                         for (int i = 0; i < allDataGrid.Items.Count; i++)//更新所有目标列表
                          {
                              if (allList[i].batchNumber == (RdD1.lTargetNo).ToString())
                              {
@@ -842,8 +817,8 @@ namespace MaritimeSecurityMonitoring.MainInterfacePage
                                  allList[i].steeringAngle = (RdD1.ulTargetCourse).ToString();
                              };
                          };
-                         radarListView.Items.Refresh();
-                         allListView.Items.Refresh();
+                         radarDataGrid.Items.Refresh();
+                         allDataGrid.Items.Refresh();
 
                          Target radar = new Target(id1, RdD1.ulTargetCourse, RdD1.ulTargetSpeed);
                          radar.RadarID = id2;
@@ -927,6 +902,106 @@ namespace MaritimeSecurityMonitoring.MainInterfacePage
                           }
                       }*/
 
+                      for (int P = 1; P < 10; P++)//AIS测试数据
+                      {
+                          AISTarget at = new AISTarget()
+                          {
+                              targetId=P,
+                              MMSI="a"+P.ToString(),
+                              IMO="b"+P.ToString(),
+                              longitude="c"+P.ToString(),
+                              latitude="d"+P.ToString(),
+                              distance=(P*10).ToString(),
+                              speed=P.ToString(),
+                              steeringAngle="e"+P.ToString(),
+                              boatName="f"+P.ToString(),
+                              callSign="g"+P.ToString(),
+                              cargoType="h"+P.ToString(),
+                              sailingStatus="i"+P.ToString(),
+                              alarmState=false,
+                          };
+                          AISList.Add(at);
+                      }
+                      AISDataGrid.ItemsSource=AISList;
+
+                      for (int P = 1; P < 10; P++)//雷达测试数据
+                      {
+                          RadarTarget rt = new RadarTarget()
+                          {
+                              targetId = P,
+                              radarId = P,
+                              batchNumber = "ab" + P.ToString(),
+                              longitude = "c" + P.ToString(),
+                              latitude = "d" + P.ToString(),
+                              distance = (P * 10).ToString(),
+                              speed = P.ToString(),
+                              steeringAngle = "e" + P.ToString(),
+                          };
+                          radarList.Add(rt);
+                      }
+                      radarDataGrid.ItemsSource=radarList;
+
+                      for (int P = 1; P < 10; P++)//融合测试数据
+                      {
+                          MixTarget mt = new MixTarget()
+                          {
+                              targetId = P,
+                              mixBatchNumber = "o" + P.ToString(),
+                              MMSI = "a" + P.ToString(),
+                              IMO = "b" + P.ToString(),
+                              longitude = "c" + P.ToString(),
+                              latitude = "d" + P.ToString(),
+                              distance = (P * 10).ToString(),
+                              speed = P.ToString(),
+                              steeringAngle = "e" + P.ToString(),
+                              boatName = "f" + P.ToString(),
+                              callSign = "g" + P.ToString(),
+                              cargoType = "h" + P.ToString(),
+                              sailingStatus = "i" + P.ToString(),
+                          };
+                          mixList.Add(mt);
+                      }
+                      mixDataGrid.ItemsSource=mixList;
+
+                      for (int P = 1; P < 10; P++)//所有目标测试数据
+                      {
+                          AllTarget at = new AllTarget()
+                          {
+                              targetId = P,
+                              dataType = "type" + P.ToString(),
+                              batchNumber = "o" + P.ToString(),
+                              MMSI = "a" + P.ToString(),
+                              IMO = "b" + P.ToString(),
+                              longitude = "c" + P.ToString(),
+                              latitude = "d" + P.ToString(),
+                              distance = (P * 10).ToString(),
+                              speed = P.ToString(),
+                              steeringAngle = "e" + P.ToString(),
+                              boatName = "f" + P.ToString(),
+                              callSign = "g" + P.ToString(),
+                              cargoType = "h" + P.ToString(),
+                              sailingStatus = "i" + P.ToString(),
+                              alarmState = false,
+                          };
+                          allList.Add(at);
+                      }
+                      allDataGrid.ItemsSource=allList;
+
+                      for (int P = 1; P < 5; P++)//告警测试数据
+                      {
+                          WarnTarget wt = new WarnTarget()
+                          {
+                              mixBatchNumber=P.ToString(),
+                              alarmTime = "2016-0" + ((P * P % 8) + 1).ToString() + "-" + (P * P % 30).ToString("00"),
+                              MMSI = "a" + P.ToString(),
+                              alarmType = "圈层区域告警",
+                              alarmContent = "船舶[000]-" + "圈层区域告警",
+                              isCheck = false,
+                              isConfirmed = false,
+                          };
+                          warnList.Add(wt);
+                      }
+                      warnDataGrid.ItemsSource = warnList;
         }
         public static DateTime GetTime(string timeStamp)//时间戳转化
         {
@@ -936,26 +1011,54 @@ namespace MaritimeSecurityMonitoring.MainInterfacePage
             return dtStart.Add(toNow);
         }
         private void allCheck_Click(object sender, RoutedEventArgs e)//报警全选按钮
-        {   
-            for (int i = warnListView.Items.Count - 1; i >= 0; i--)
+        {
+            for (int i = warnDataGrid.Items.Count - 1; i >= 0; i--)
             {
                 warnList[i].isCheck = true;
             }
-            warnListView.Items.Refresh();
+            warnDataGrid.Items.Refresh();
+        }
+
+        private void oppCheck_Click(object sender, RoutedEventArgs e)//报警反选按钮
+        {
+            for (int i = warnDataGrid.Items.Count - 1; i >= 0; i--)
+            {
+                warnList[i].isCheck = !warnList[i].isCheck;
+            }
+            warnDataGrid.Items.Refresh();
         }
 
         private void delWarn_Click(object sender, RoutedEventArgs e)//报警删除按钮
         {
-            for (int i = warnListView.Items.Count - 1; i >= 0; i--)
+            for (int i = warnDataGrid.Items.Count - 1; i >= 0; i--)
             {
                 if (string.Compare(warnList[i].isCheck.ToString(), "true") == 1)
                 {
-                    warnInformation.RemoveAt(i);
                     warnList.RemoveAt(i);
                 }
             }
-            warnListView.Items.Refresh();
+            warnDataGrid.Items.Refresh();
         }
+
+        private void isConfirmed_Click(object sender, RoutedEventArgs e)//报警确认按钮
+        {
+            System.Windows.Controls.Button b = sender as System.Windows.Controls.Button;
+            string mbn = Convert.ToString(b.CommandParameter);
+            for (int i = warnDataGrid.Items.Count - 1; i >= 0; i--)
+            {
+                if (warnList[i].mixBatchNumber==mbn&& warnList[i].isConfirmed == false)
+                {
+                    warnList[i].isConfirmed = true;
+                }
+            }
+            warnDataGrid.Items.Refresh();
+        }
+
+        private void autoDelWarn()//报警自动删除
+        {
+            
+        }
+
         /*列表数据显示模块（end）***********************************************************************************/
         private void targetInformationBox(object sender, System.Windows.Input.MouseEventArgs e)//点击海图目标时的小弹窗
         {
@@ -993,40 +1096,39 @@ namespace MaritimeSecurityMonitoring.MainInterfacePage
         }
         private void allTargetClick(object sender, RoutedEventArgs e)
         {
-            allListView.Visibility = Visibility.Visible;
-            AISListView.Visibility = Visibility.Collapsed;
-            radarListView.Visibility = Visibility.Collapsed;
-            mixListView.Visibility = Visibility.Collapsed;      
+            allDataGrid.Visibility = Visibility.Visible;
+            AISDataGrid.Visibility = Visibility.Collapsed;
+            radarDataGrid.Visibility = Visibility.Collapsed;
+            mixDataGrid.Visibility = Visibility.Collapsed;      
         }
         private void AISTargetClick(object sender, RoutedEventArgs e)
         {
-            allListView.Visibility = Visibility.Collapsed;
-            AISListView.Visibility = Visibility.Visible;
-            radarListView.Visibility = Visibility.Collapsed;
-            mixListView.Visibility = Visibility.Collapsed;
-            
+            allDataGrid.Visibility = Visibility.Collapsed;
+            AISDataGrid.Visibility = Visibility.Visible;
+            radarDataGrid.Visibility = Visibility.Collapsed;
+            mixDataGrid.Visibility = Visibility.Collapsed;
         }
         private void radarTargetClick(object sender, RoutedEventArgs e)
         {
-            allListView.Visibility = Visibility.Collapsed;
-            AISListView.Visibility = Visibility.Collapsed;
-            radarListView.Visibility = Visibility.Visible;
-            mixListView.Visibility = Visibility.Collapsed;
+            allDataGrid.Visibility = Visibility.Collapsed;
+            AISDataGrid.Visibility = Visibility.Collapsed;
+            radarDataGrid.Visibility = Visibility.Visible;
+            mixDataGrid.Visibility = Visibility.Collapsed;
         }
         private void mixTargetClick(object sender, RoutedEventArgs e)
         {
-            allListView.Visibility = Visibility.Collapsed;
-            AISListView.Visibility = Visibility.Collapsed;
-            radarListView.Visibility = Visibility.Collapsed;
-            mixListView.Visibility = Visibility.Visible;
+            allDataGrid.Visibility = Visibility.Collapsed;
+            AISDataGrid.Visibility = Visibility.Collapsed;
+            radarDataGrid.Visibility = Visibility.Collapsed;
+            mixDataGrid.Visibility = Visibility.Visible;
         }
-        private void listView1_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        private void DataGrid1_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
 
         }
-        private void listView2_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void DataGrid2_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            
         }
         /*控制操作海图面板（star）-------------------------------------------------------------------------*/
         public void mapMoveDown() 

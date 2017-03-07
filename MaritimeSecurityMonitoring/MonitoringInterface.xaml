@@ -2,181 +2,193 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="中海油安防平台监控系统" Icon="Image\SmallLogo.png" 
-        Width="1120" Height="630" MinWidth="1120" MinHeight="630"  WindowState="Maximized">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="0"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <TextBox Background="#1e8ab7" Foreground="White"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsReadOnly="True" FontSize="17">中海油安防平台监控系统</TextBox>
-        <Button  HorizontalAlignment="Right" Height="22" Width="22" BorderThickness="0" Margin="2">
-            <Button.Background>
-                <ImageBrush ImageSource="image\close.png" Stretch="Fill"></ImageBrush>
-            </Button.Background>
-        </Button>
-        <Image  Source="Image\BigLogo.JPG" HorizontalAlignment="Left"></Image>
-        <Grid  Grid.Row="2" Width="Auto" Height="Auto" Margin="3,0,3,3">
+        Width="1200" Height="675" MinWidth="1200" MinHeight="675"  WindowState="Maximized">
+    <Window.Resources>
+        <Style TargetType="{x:Type MenuItem}">
+            <Setter Property="Background" Value="#FF007CC3"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="#FF6EB5DC"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+    </Window.Resources>
+    <Border BorderThickness="0" Background="#FF007CC3">
+        <Grid Grid.Row="2" Width="Auto" Height="Auto">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-
-            <Grid  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5"   Name="mainMenu" Height="25" Background="#1e8ab7" Visibility="Visible">
-                <Menu VerticalAlignment="center" Background="#1e8ab7" Foreground="White" BorderThickness="0" >
-                    <MenuItem Header="态势显示" FontSize="14" VerticalContentAlignment="Center" Background="#1e8ab7" BorderThickness="0">
-                        <MenuItem Header="AIS态势" Background="#1e8ab7" BorderThickness="0" Click="AISSituationClick" />
-                        <MenuItem Header="雷达态势" Background="#1e8ab7" BorderThickness="0" Click="radarSituationClick"/>
-                        <MenuItem Header="融合态势" Background="#1e8ab7" BorderThickness="0" Click="mixSituationClick"/>
-                        <MenuItem Header="光电态势" Background="#1e8ab7" BorderThickness="0,0,0,1" Click="optoelectronicSituationClick"/>
-                        <MenuItem Header="雷达扫描线" Background="#1e8ab7" BorderThickness="0" Click="radarScanningLineClick"/>
-                        <MenuItem Header="光电观察范围" Background="#1e8ab7" BorderThickness="0,0,0,1" Click="optoelectronicRangeClick"/>
-                        <MenuItem Header="目标显示方式设置" Background="#1e8ab7" BorderThickness="0" Click="targetDisplayMethodsClick"/>
+            
+            <Grid Grid.Row="0" Height="35">
+                <Menu VerticalAlignment="Bottom" Background="#FF007CC3" BorderThickness="0 0 0 1" BorderBrush="White" Margin="0 0 0 5">
+                    <MenuItem Header="态势显示" Margin="10 0 0 0">
+                        <MenuItem Header="AIS态势" Click="AISSituationClick"/>
+                        <MenuItem Header="雷达态势" Click="radarSituationClick"/>
+                        <MenuItem Header="融合态势" Click="mixSituationClick"/>
+                        <MenuItem Header="光电态势" BorderThickness="0 0 0 1" Click="optoelectronicSituationClick"/>
+                        <MenuItem Header="雷达扫描线" Click="radarScanningLineClick"/>
+                        <MenuItem Header="光电观察范围" BorderThickness="0 0 0 1" Click="optoelectronicRangeClick"/>
+                        <MenuItem Header="目标显示方式设置" Click="targetDisplayMethodsClick"/>
                     </MenuItem>
-
-                    <MenuItem Header="报警管理"  FontSize="14" VerticalContentAlignment="Center">
-                        <MenuItem Header="报警方式" Background="#1e8ab7" BorderThickness="0,0,0,1">
-                            <MenuItem Header="列表" Background="#1e8ab7" BorderThickness="0" Click="listWarnClick"/>
-                            <MenuItem Header="图形" Background="#1e8ab7" BorderThickness="0" Click="imageWarnClick"/>
-                            <MenuItem Header="声音" Background="#1e8ab7" BorderThickness="0" Click="voiceWarnClick"/>
+                    
+                    <MenuItem Header="报警管理" Margin="10 0 0 0">
+                        <MenuItem Header="报警方式" BorderThickness="0,0,0,1">
+                            <MenuItem Header="列表" Click="listWarnClick"/>
+                            <MenuItem Header="图形" Click="imageWarnClick"/>
+                            <MenuItem Header="声音" Click="voiceWarnClick"/>
                         </MenuItem>
-                        <MenuItem Header="防护圈层设置" Background="#1e8ab7" BorderThickness="0" Click="defenseSpheresSettingClick"/>
-                        <MenuItem Header="多边形防护区设置" Background="#1e8ab7" BorderThickness="0" Click="areaLabelClick"/>
-                        <MenuItem Header="管道防护区设置" Background="#1e8ab7" BorderThickness="0" Click="pipelineClick"/>
-                        <MenuItem Header="防护区管理" Background="#1e8ab7" BorderThickness="0" Click="warnAreaSettingClick"/>
+                        <MenuItem Header="防护圈层设置" Click="defenseSpheresSettingClick"/>
+                        <MenuItem Header="多边形防护区设置" Click="areaLabelClick"/>
+                        <MenuItem Header="管道防护区设置" Click="pipelineClick"/>
+                        <MenuItem Header="防护区管理" Click="warnAreaSettingClick"/>
                     </MenuItem>
 
-                    <MenuItem Header="视频管理" FontSize="14" VerticalContentAlignment="Center">
-                        <MenuItem Header="图片抓取" Background="#1e8ab7" BorderThickness="0" Click="captureImagesClick"/>
-                        <MenuItem Header="目标跟踪" Background="#1e8ab7" BorderThickness="0" Click="trackVideoClick"/>
+                    <MenuItem Header="视频管理" Margin="10 0 0 0">
+                        <MenuItem Header="图片抓取" Click="captureImagesClick"/>
+                        <MenuItem Header="目标跟踪" Click="trackVideoClick"/>
                     </MenuItem>
 
-                    <MenuItem Header="联动控制" FontSize="14" VerticalContentAlignment="Center">
-                        <MenuItem Header="自动控制" Background="#1e8ab7" BorderThickness="0" Click="automaticLinkageClick"/>
-                        <MenuItem Header="手动控制" Background="#1e8ab7" BorderThickness="0" Click="manualControlClick"/>
+                    <MenuItem Header="联动控制" Margin="10 0 0 0">
+                        <MenuItem Header="自动控制" Click="automaticLinkageClick"/>
+                        <MenuItem Header="手动控制" Click="manualControlClick"/>
                     </MenuItem>
 
-                    <MenuItem Header="融合参数" FontSize="14" VerticalContentAlignment="Center" Click="fusionParameterSettingClick">
+                    <MenuItem Header="融合参数" Margin="10 0 0 0" Click="fusionParameterSettingClick">
                     </MenuItem>
 
-                    <MenuItem Header="海图管理" FontSize="14" VerticalContentAlignment="Center">
-                        <MenuItem Header="海图显示" Background="#1e8ab7" BorderThickness="0,0,0,1">
-                            <MenuItem Header="基础显示" Background="#1e8ab7" BorderThickness="0" Click="showBasisDataClick"/>
-                            <MenuItem Header="标准显示" Background="#1e8ab7" BorderThickness="0" Click="showStandardDataClick"/>
-                            <MenuItem Header="全部显示" Background="#1e8ab7" BorderThickness="0" Click="showAllDataClick"/>
+                    <MenuItem Header="海图管理" Margin="10 0 0 0">
+                        <MenuItem Header="海图显示" BorderThickness="0,0,0,1">
+                            <MenuItem Header="基础显示" Click="showBasisDataClick"/>
+                            <MenuItem Header="标准显示" Click="showStandardDataClick"/>
+                            <MenuItem Header="全部显示" Click="showAllDataClick"/>
                         </MenuItem>
-                        <MenuItem Header="海图操作" Background="#1e8ab7" BorderThickness="0,0,0,1">
-                            <MenuItem Header="放大" Background="#1e8ab7" BorderThickness="0" Click="toBigerClick"/>
-                            <MenuItem Header="缩小" Background="#1e8ab7" BorderThickness="0" Click="toSmallerClick"/>
-                            <MenuItem Header="指定比例尺" Background="#1e8ab7" BorderThickness="0" Click="settingMeasuringScaleClick"/>
-                            <MenuItem Header="测距" Background="#1e8ab7" BorderThickness="0" Click="measureDistanceClick"/>
-                            <MenuItem Header="上移" Background="#1e8ab7" BorderThickness="0" Click="topMoveClick"/>
-                            <MenuItem Header="下移" Background="#1e8ab7" BorderThickness="0" Click="bottomMoveClick"/>
-                            <MenuItem Header="左移" Background="#1e8ab7" BorderThickness="0" Click="leftMoveClick"/>
-                            <MenuItem Header="右移" Background="#1e8ab7" BorderThickness="0,0,0,1" Click="rightMoveClick"/>
-                            <MenuItem Header="归心" Background="#1e8ab7" BorderThickness="0" Click="convertClick"/>
-                            <MenuItem Header="漫游" Background="#1e8ab7" BorderThickness="0" Click="moveClick"/>
+                        <MenuItem Header="海图操作" BorderThickness="0,0,0,1">
+                            <MenuItem Header="放大" Click="toBiggerClick"/>
+                            <MenuItem Header="缩小" Click="toSmallerClick"/>
+                            <MenuItem Header="指定比例尺" Click="settingMeasuringScaleClick"/>
+                            <MenuItem Header="测距" Click="measureDistanceClick"/>
+                            <MenuItem Header="上移" Click="topMoveClick"/>
+                            <MenuItem Header="下移" Click="bottomMoveClick"/>
+                            <MenuItem Header="左移" Click="leftMoveClick"/>
+                            <MenuItem Header="右移" BorderThickness="0,0,0,1" Click="rightMoveClick"/>
+                            <MenuItem Header="归心" Click="convertClick"/>
+                            <MenuItem Header="漫游" Click="moveClick"/>
                         </MenuItem>
-                        <MenuItem Header="图库管理" Background="#1e8ab7" BorderThickness="0" Click="mapManageClick"/>
+                        <MenuItem Header="图库管理" Click="mapManageClick"/>
                     </MenuItem>
 
-                    <MenuItem Header="数据管理" FontSize="14" VerticalContentAlignment="Center">
-                        <MenuItem Header="数据查询" Background="#1e8ab7" BorderThickness="0" Click="dataQueryClick"/>
-                        <MenuItem Header="数据统计" Background="#1e8ab7" BorderThickness="0,0,0,1" Click="dateStatisticsClick"/>
-                        <MenuItem Header="航迹查询" Background="#1e8ab7" BorderThickness="0" Click="queryTrackClick"/>
-                        <MenuItem Header="态势回放" Background="#1e8ab7" BorderThickness="0,0,0,1" Click="situationPlaybackClick"/>
-                        <MenuItem Header="数据导出" Background="#1e8ab7" BorderThickness="0,0,0,1" Click="dateExportClick"/>
+                    <MenuItem Header="数据管理" Margin="10 0 0 0">
+                        <MenuItem Header="数据查询" Click="dataQueryClick"/>
+                        <MenuItem Header="数据统计" BorderThickness="0,0,0,1" Click="dateStatisticsClick"/>
+                        <MenuItem Header="航迹查询" Click="queryTrackClick"/>
+                        <MenuItem Header="态势回放" BorderThickness="0,0,0,1" Click="situationPlaybackClick"/>
+                        <MenuItem Header="数据导出" Click="dateExportClick"/>
                     </MenuItem>
 
-                    <MenuItem Header="设备管理" FontSize="14" VerticalContentAlignment="Center">
-                        <MenuItem Header="设备运行状态" Background="#1e8ab7" BorderThickness="0" Click="deviceOperationStatusClick"/>
-                        <MenuItem Header="设备网络状态" Background="#1e8ab7" BorderThickness="0" Click="deviceNetworkStatuisClick"/>
+                    <MenuItem Header="设备管理" Margin="10 0 0 0">
+                        <MenuItem Header="设备运行状态" Click="deviceOperationStatusClick"/>
+                        <MenuItem Header="设备网络状态" Click="deviceNetworkStatuisClick"/>
                     </MenuItem>
 
-                    <MenuItem Header="系统管理"  FontSize="14" VerticalContentAlignment="Center">
-                        <MenuItem Header="用户管理" Background="#1e8ab7" BorderThickness="0" Click="userManagementClick"/>
-                        <MenuItem Header="权限管理" Background="#1e8ab7" BorderThickness="0">
-                            <MenuItem Header="角色管理" Background="#1e8ab7" BorderThickness="0" Click="roleManageClick"/>
-                            <MenuItem Header="角色权限管理" Background="#1e8ab7" BorderThickness="0" Click="rolePermissionManageClick"/>
+                    <MenuItem Header="系统管理" Margin="10 0 0 0">
+                        <MenuItem Header="用户管理" Click="userManagementClick"/>
+                        <MenuItem Header="权限管理">
+                            <MenuItem Header="角色管理" Click="roleManageClick"/>
+                            <MenuItem Header="角色权限管理" Click="rolePermissionManageClick"/>
                         </MenuItem>
-                        <MenuItem Header="参数设置" Background="#1e8ab7" BorderThickness="0">
-                            <MenuItem Header="网络参数设置" Background="#1e8ab7" BorderThickness="0" Click="networkParameterSettingClick"/>
-                            <MenuItem Header="串口参数设置" Background="#1e8ab7" BorderThickness="0" Click="gorgeParameterSettingClick"/>
-                            <MenuItem Header="平台中心设置" Background="#1e8ab7" BorderThickness="0" Click="platformPositionSettingClick"/>
+                        <MenuItem Header="参数设置">
+                            <MenuItem Header="网络参数设置" Click="networkParameterSettingClick"/>
+                            <MenuItem Header="串口参数设置" Click="gorgeParameterSettingClick"/>
+                            <MenuItem Header="平台中心设置" Click="platformPositionSettingClick"/>
                         </MenuItem>
                     </MenuItem>
 
-                    <MenuItem Header="帮助"  FontSize="14" VerticalContentAlignment="Center" Click="helpClick">
+                    <MenuItem Header="帮助" Margin="10 0 0 0" Click="helpClick">
                     </MenuItem>
                 </Menu>
             </Grid>
+            
+            <Grid Grid.Row="1" Height="60">
+                <Border BorderThickness="0" Background="#FF6EB5DC" CornerRadius="8" Margin="5 0 5 0">
+                    <DockPanel>
+                        <Image Height="45" Margin="10 0 0 0" Source="Image\SeperateLine.png"/>
+                        <Button ToolTip="双屏显示" Click="doubleScreenShowClick" Margin="10 0 0 0">
+                            <Image Source="Image\ExtendScreenNew.png"/>
+                        </Button>
+                        <Image Height="45" Margin="10 0 0 0" Source="Image\SeperateLine.png"/>
+                        <Button ToolTip="漫游" Click="moveClick" Margin="10 0 0 0">
+                            <Image Source="Image\DragMoveNew.png"/>
+                        </Button>
+                        <Button ToolTip="上移" Click="topMoveClick" Margin="15 0 0 0">
+                            <Image Source="Image\UpMoveNew.png"/>
+                        </Button>
+                        <Button ToolTip="下移" Click="bottomMoveClick" Margin="15 0 0 0">
+                            <Image Source="Image\DownMoveNew.png"/>
+                        </Button>
+                        <Button ToolTip="左移" Click="leftMoveClick" Margin="15 0 0 0">
+                            <Image Source="Image\LeftMoveNew.png"/>
+                        </Button>
+                        <Button  ToolTip="右移" Click="rightMoveClick" Margin="15 0 0 0">
+                            <Image Source="Image\RightMoveNew.png" />
+                        </Button>
+                        <Button ToolTip="归心" Click="convertClick" Margin="15 0 0 0">
+                            <Image Source="Image\ForCenteringNew.png"/>
+                        </Button>
+                        <Button ToolTip="平台归心" Click="platformCenteringClick" Margin="15 0 0 0">
+                            <Image Source="Image\PlatformCentering.png"/>
+                        </Button>
+                        <Image Height="45" Margin="10 0 0 0" Source="Image\SeperateLine.png"/>
+                        <Button ToolTip="放大" Click="toBiggerClick" Margin="10 0 0 0">
+                            <Image Source="Image\ToBigNew.png"/>
+                        </Button>
+                        <Button ToolTip="缩小" Click="toSmallerClick" Margin="10 0 0 0">
+                            <Image Source="Image\ToSmallNew.png"/>
+                        </Button>
+                        <Button ToolTip="区域放大" Click="partToBiggerClick" Margin="15 0 0 0">
+                            <Image Source="Image\PartToBig.png"/>
+                        </Button>
+                        <Button ToolTip="指定比例尺" Click="settingMeasuringScaleClick" Margin="15 0 0 0">
+                            <Image Width="40" Source="Image\ScaleNew.png"/>
+                        </Button>
+                        <Button ToolTip="测距" Click="measureDistanceClick" Margin="15 0 0 0">
+                            <Image Source="Image\MeasureNew.png"/>
+                        </Button>
+                        <Image Height="45" Margin="10 0 0 0" Source="Image\SeperateLine.png"/>
+                        <Button ToolTip="多边形区域标注" Click="areaLabelClick" Margin="10 0 0 0">
+                            <Image Source="Image\AreaSignNew.png"/>
+                        </Button>
+                        <Button ToolTip="管道区域标注" Click="pipelineClick" Margin="15 0 0 0">
+                            <Image Source="Image\PipelineNew.png"/>
+                        </Button>
+                        <Image Height="45" Margin="10 0 0 0" Source="Image\SeperateLine.png"/>
+                        <Button ToolTip="视频跟踪" Click="followingVideoClick" Margin="10 0 0 0">
+                            <Image Source="Image\FollowingVideo.png"/>
+                        </Button>
+                        <Button ToolTip="抓图" Click="captureImagesClick" Margin="15 0 0 0">
+                            <Image Width="40" Source="Image\CaptureImagesNew.png"/>
+                        </Button>
+                        <Image Height="45" Margin="10 0 0 0" Source="Image\SeperateLine.png"/>
+                        <Button ToolTip="态势回放" Click="situationPlaybackClick" Margin="10 0 0 0">
+                            <Image Width="40" Source="Image\PlaySituationNew.png"/>
+                        </Button>
+                        <Button ToolTip="航迹查询" Click="queryTrackClick" Margin="15 0 0 0">
+                            <Image Source="Image\TrackSearchNew.png"/>
+                        </Button>
+                        <Image Height="45" Margin="10 0 0 0" Source="Image\SeperateLine.png"/>
+                        <Button ToolTip="返回主界面" Click="returnClick" Margin="10 0 0 0">
+                            <Image Source="Image\ReturnBackNew.png"/>
+                        </Button>
+                    </DockPanel>
+                </Border>
+            </Grid>
 
-            <ToolBarTray Grid.Row="1" Grid.Column="0"  Grid.ColumnSpan="5" Background="#81c3e2" Visibility="Visible" Name="toolMenu">
-                <ToolBar Band="1" BandIndex="1" Background="#81c3e2">
-                    <Button Height="33" ToolTip="双屏显示" Click="doubleScreenShowClick">
-                        <Image Width="30" Source="Image\ExtendScreen.png"/>
-                    </Button>
-                    <Image Height="33" Source="Image\Line.jpg"/>
-                    <Button Height="33" ToolTip="漫游" Click="moveClick">
-                        <Image Width="30" Source="Image\DragMove.png"/>
-                    </Button>
-                    <Button Height="33"  ToolTip="上移" Click="topMoveClick">
-                        <Image Width="30" Source="Image\UpMove.png"/>
-                    </Button>
-                    <Button Height="33"  ToolTip="下移" Click="bottomMoveClick">
-                        <Image Width="30" Source="Image\DownMove.png"/>
-                    </Button>
-                    <Button Height="33"  ToolTip="左移" Click="leftMoveClick">
-                        <Image Width="30" Source="Image\LeftMove.png"/>
-                    </Button>
-                    <Button Height="33"  ToolTip="右移" Click="rightMoveClick">
-                        <Image Width="30" Source="Image\RightMove.png" />
-                    </Button>
-                    <Button Height="33"  ToolTip="归心" Click="convertClick">
-                        <Image Width="30" Source="Image\ForCentering.png"/>
-                    </Button>
-                    <Image Height="33" Source="Image\Line.jpg"/>
-                    <Button  Height="33"  ToolTip="放大" Click="toBigerClick">
-                        <Image Width="30" Source="Image\ToBig.png"/>
-                    </Button>
-                    <Button Height="33"  ToolTip="缩小" Click="toSmallerClick">
-                        <Image Width="30" Source="Image\ToSmall.png"/>
-                    </Button>
-                    <Button Height="33"  ToolTip="指定比例尺" Click="settingMeasuringScaleClick">
-                        <Image Width="30" Source="Image\Scale.png"/>
-                    </Button>
-                    <Button Height="33"  ToolTip="测距" Click="measureDistanceClick">
-                        <Image Width="30" Source="Image\Measure.png"/>
-                    </Button>
-                    <Image Height="33" Source="Image\Line.jpg"/>
-                    <Button Height="33"  ToolTip="多边形区域标注" Click="areaLabelClick">
-                        <Image Width="30" Source="Image\AreaSign.png"/>
-                    </Button>
-                    <Button Height="33"  ToolTip="管道区域标注" Click="pipelineClick">
-                        <Image Width="30" Source="Image\pipeline.png"/>
-                    </Button>
-                    <Image Height="33" Source="Image\Line.jpg"/>
-                    <Button Height="33" ToolTip="视频跟踪">
-                        <Image Width="30" Source="Image\PlaySituation.png"/>
-                    </Button>
-                    <Button Height="33"  ToolTip="抓图" Click="captureImagesClick">
-                        <Image Width="30" Source="Image\CaptureImages.png"/>
-                    </Button>
-                    <Button Height="33" ToolTip="态势回放" Click="situationPlaybackClick">
-                        <Image Width="30" Source="Image\PlaySituation.png"/>
-                    </Button>
-                    <Button Height="33" ToolTip="航迹查询" Click="queryTrackClick">
-                        <Image Width="30" Source="Image\TrackSearch.png"/>
-                    </Button>
-                    <Button Height="33"  ToolTip="返回主界面" Click="returnClick">
-                        <Image Width="30" Source="Image\ReturnBack.png"/>
-                    </Button>
-                </ToolBar>
-            </ToolBarTray>
-
-            <Frame Grid.Row="2" Grid.Column="0" Name="content" Source="Monitoring.xaml" NavigationUIVisibility="Hidden" BorderBrush="SteelBlue" BorderThickness="3px" Margin="0,0,0.6,-0.4" MouseLeave="windowMouseLeave"  MouseEnter="windowMouseEnter"/>
-
+            <Frame Grid.Row="2" Name="content" Margin="5" NavigationUIVisibility="Hidden"/>
         </Grid>
-    </Grid>
+    </Border>
 </Window>

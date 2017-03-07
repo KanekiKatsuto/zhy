@@ -67,11 +67,14 @@ namespace MaritimeSecurityMonitoring
         {
 
         }
+
         private void yesClick(object sender, RoutedEventArgs e)
         {
-            if (xyzParameter.Text == "" || abrDistance.Text == "" || abrAngle.Text == "" || radarDisappearTime.Text == "" || AISDisappearTime.Text == "" || IMParameter.Text == "" || INParameter.Text == "")
+            float ftry;
+            long ltry;
+            if (!float.TryParse(xyzParameter.Text, out ftry) || !float.TryParse(abrDistance.Text, out ftry) || !float.TryParse(abrAngle.Text, out ftry) || !long.TryParse(radarDisappearTime.Text, out ltry) || !long.TryParse(AISDisappearTime.Text, out ltry) || !long.TryParse(IMParameter.Text, out ltry) || !long.TryParse(INParameter.Text, out ltry))
             {
-                System.Windows.MessageBox.Show("输入内容不能为空，请输入。");
+                MessageBoxX.Show("错误信息", "输入数据有误！请重新输入！");
             }
             else
             {
@@ -116,7 +119,7 @@ namespace MaritimeSecurityMonitoring
                 }
 
                 Monitoring.FusionBack();
-                System.Windows.MessageBox.Show("参数保存成功。");
+                MessageBoxX.Show("提示信息", "参数保存成功！");
                 this.Close();
             }
         }
@@ -139,13 +142,24 @@ namespace MaritimeSecurityMonitoring
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            xyzParameter.Text = sc.read_string("fusion","xyz");
+            /*xyzParameter.Text=sc.read_string("fusion", "xyz");
             abrDistance.Text = sc.read_string("fusion", "abrDistance");
             abrAngle.Text = sc.read_string("fusion", "abrAngle");
             radarDisappearTime.Text = sc.read_string("fusion", "radarMiss");
             AISDisappearTime.Text = sc.read_string("fusion", "AISMiss");
             IMParameter.Text = sc.read_string("fusion", "IM");
-            INParameter.Text = sc.read_string("fusion", "IN");
+            INParameter.Text = sc.read_string("fusion", "IN");*/
+            FusionParameter fp = new FusionParameter
+            {
+                xyzParameter = (float)double.Parse(sc.read_string("fusion", "xyz")),
+                abrDistance = (float)double.Parse(sc.read_string("fusion", "abrDistance")),
+                abrAngle = (float)double.Parse(sc.read_string("fusion", "abrAngle")),
+                radarMiss = (long)double.Parse(sc.read_string("fusion", "radarMiss")),
+                AISMiss = (long)double.Parse(sc.read_string("fusion", "AISMiss")),
+                IM = (long)double.Parse(sc.read_string("fusion", "IM")),
+                IN = (long)double.Parse(sc.read_string("fusion", "IN")),
+            };
+            DataContext = fp;
             prompt.IsChecked = sc.read_bool("fusionRadio", "prompt");
             warn.IsChecked = sc.read_bool("fusionRadio", "warn");
             RadioB3.IsChecked = sc.read_bool("fusionRadio", "optimal");

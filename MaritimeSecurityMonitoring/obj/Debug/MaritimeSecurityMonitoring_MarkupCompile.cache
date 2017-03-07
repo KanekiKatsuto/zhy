@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\zhipan\Desktop\MaritimeSecurityMonitoring-4.5.2\MaritimeSecurityMonitoring\obj\Debug\
+D:\study\凌睿工作室\中海油\MaritimeSecurityMonitoring-4.5.2\MaritimeSecurityMonitoring-4.5.2\MaritimeSecurityMonitoring\obj\Debug\
 MaritimeSecurityMonitoring
 none
 false
 DEBUG;TRACE
-C:\Users\zhipan\Desktop\MaritimeSecurityMonitoring-4.5.2\MaritimeSecurityMonitoring\App.xaml
-331260905582
+D:\study\凌睿工作室\中海油\MaritimeSecurityMonitoring-4.5.2\MaritimeSecurityMonitoring-4.5.2\MaritimeSecurityMonitoring\App.xaml
+34-93522266
 
-47593041905
-252027238979
-DefenseCircleSetting.xaml;Page\MonitoringSecondPage.xaml;Page\MonitoringFirstPage.xaml;Page\InterchangePage.xaml;Page\DataServerPage.xaml;Page\MixServerPage.xaml;Page\OptoelectronicPage.xaml;Page\AISPage.xaml;AutomaticLinkage.xaml;CaptureImages.xaml;DataQuery.xaml;DateExport.xaml;DateStatistics.xaml;DefenseSpheresSetting.xaml;DeviceNetworkStatuis.xaml;DeviceOperationStatus.xaml;FusionParameterSetting.xaml;GorgeParameterSetting.xaml;Monitoring.xaml;MainWindow.xaml;MapManage.xaml;MonitoringInterface.xaml;NetworkParameterSetting.xaml;Page\RadarFirstPage.xaml;Page\RadarSecondPage.xaml;PlatformPositionSetting.xaml;PolygonDialog.xaml;QueryTrack.xaml;RoleManage.xaml;RolePermisionManage.xaml;TargetDisplayMethods.xaml;UserManagement.xaml;SetMeasuringScale.xaml;
+51-1341006234
+251214231761
+DefenseCircleSetting.xaml;MonitoringInterface.xaml;MessageBoxXcs\MessageBoxX.xaml;Page\MonitoringSecondPage.xaml;Page\MonitoringFirstPage.xaml;Page\InterchangePage.xaml;Page\DataServerPage.xaml;Page\MixServerPage.xaml;Page\OptoelectronicPage.xaml;Page\AISPage.xaml;AutomaticLinkage.xaml;CaptureImages.xaml;DataQuery.xaml;DateExport.xaml;DateStatistics.xaml;DefenseSpheresSetting.xaml;DeviceNetworkStatuis.xaml;DeviceOperationStatus.xaml;FusionParameterSetting.xaml;GorgeParameterSetting.xaml;Monitoring.xaml;MainWindow.xaml;MapManage.xaml;NetworkParameterSetting.xaml;Page\RadarFirstPage.xaml;Page\RadarSecondPage.xaml;PlatformPositionSetting.xaml;PolygonDialog.xaml;QueryTrack.xaml;RoleManage.xaml;RolePermisionManage.xaml;TargetDisplayMethods.xaml;UserManagement.xaml;SetMeasuringScale.xaml;
 
 False
 

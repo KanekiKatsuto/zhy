@@ -8,6 +8,24 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/pipeline.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/areasignnew.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/captureimagesnew.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/downmovenew.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/dragmovenew.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/followingvideo.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/forcenteringnew.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/leftmovenew.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/measurenew.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/parttobig.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/pipelinenew.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/platformcentering.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/playsituationnew.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/returnbacknew.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/rightmovenew.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/scalenew.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/tobignew.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/tosmallnew.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/tracksearchnew.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/upmovenew.png")]
 
 

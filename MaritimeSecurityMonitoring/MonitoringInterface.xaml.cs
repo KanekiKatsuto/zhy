@@ -8,7 +8,7 @@ using MaritimeSecurityMonitoring.Video;
 namespace MaritimeSecurityMonitoring
 {
     /// <summary>
-    /// MonitoringInterface.xaml 的交互逻辑
+    /// Interface.xaml 的交互逻辑
     /// </summary>
     public partial class MonitoringInterface : Window
     {
@@ -20,103 +20,119 @@ namespace MaritimeSecurityMonitoring
             InitializeComponent();
             this.Closing += closeSoftware;
         }
+
         private void closeSoftware(object o, System.ComponentModel.CancelEventArgs e)//关闭主界面时界面完全关闭
         {
             System.Windows.Application.Current.Shutdown();
         }
-        private void windowMouseEnter(object sender, System.Windows.Input.MouseEventArgs e)//鼠标移入窗口，主菜单，工具栏收起
-        {
-            //mainMenu.Visibility = Visibility.Collapsed;
-            //toolMenu.Visibility = Visibility.Collapsed;
 
-        }
-        private void windowMouseLeave(object sender, System.Windows.Input.MouseEventArgs e)//鼠标移出窗口，主菜单，工具栏弹出
-        {
-            mainMenu.Visibility = Visibility.Visible;
-            toolMenu.Visibility = Visibility.Visible;
-        }
-//***********************************************************************************
-//*******************************主菜单事件******************************************
-//***********************************************************************************
+        //***********************************************************************************
+        //*******************************主菜单事件******************************************
+        //***********************************************************************************
         private void AISSituationClick(object sender, RoutedEventArgs e)//态势显示->AIS态势
         {
 
         }
+
         private void radarSituationClick(object sender, RoutedEventArgs e)//态势显示->雷达态势
         {
 
         }
+
         private void mixSituationClick(object sender, RoutedEventArgs e)//态势显示->融合态势
         {
 
         }
+
         private void optoelectronicSituationClick(object sender, RoutedEventArgs e)//态势显示->光电态势
         {
 
         }
+
         private void radarScanningLineClick(object sender, RoutedEventArgs e)//态势显示->雷达扫描线
         {
 
         }
+
         private void optoelectronicRangeClick(object sender, RoutedEventArgs e)//态势显示->光电观察范围
         {
 
         }
+
         private void targetDisplayMethodsClick(object sender, RoutedEventArgs e)//态势显示->目标显示方式设置
         {
             TargetDisplayMethods w = new TargetDisplayMethods();
             System.Windows.Application.Current.MainWindow = w;
             w.ShowDialog();
         }
+
         private void listWarnClick(object sender, RoutedEventArgs e)//报警管理->报警方式->列表报警
         {
 
         }
+
         private void imageWarnClick(object sender, RoutedEventArgs e)//报警管理->报警方式->图像报警
         {
 
         }
+
         private void voiceWarnClick(object sender, RoutedEventArgs e)//报警管理->报警方式->声音报警
         {
 
         }
+
         private void defenseSpheresSettingClick(object sender, RoutedEventArgs e)//报警管理->防护圈层设置
         {
             DefenseCircleSetting w = new DefenseCircleSetting();
             System.Windows.Application.Current.MainWindow = w;
             w.ShowDialog();
         }
+
+        private void areaLabelClick(object sender, RoutedEventArgs e)//多边形
+        {
+            Monitoring.AddedForbiddenZoneBack();
+        }
+        private void pipelineClick(object sender, RoutedEventArgs e)//管道区域
+        {
+            Monitoring.AddedPipelineBack();
+        }
+
         private void warnAreaSettingClick(object sender, RoutedEventArgs e)//报警管理->报警区域设置
         {
 
         }
+
         private void captureImagesClick(object sender, RoutedEventArgs e)//视频管理->图片抓取
         {
             CaptureImages w = new CaptureImages();
             System.Windows.Application.Current.MainWindow = w;
             w.ShowDialog();
         }
+
         private void trackVideoClick(object sender, RoutedEventArgs e)//视频管理->视频跟踪
         {
 
         }
-        
+
         private void automaticLinkageClick(object sender, RoutedEventArgs e)//联动控制->自动控制
         {
             AutomaticLinkage w = new AutomaticLinkage();
             System.Windows.Application.Current.MainWindow = w;
             w.ShowDialog();
         }
+
         private void manualControlClick(object sender, RoutedEventArgs e)//联动控制->手动控制
         {
 
         }
+
         private void fusionParameterSettingClick(object sender, RoutedEventArgs e)//融合参数
         {
             FusionParameterSetting w = new FusionParameterSetting();
             System.Windows.Application.Current.MainWindow = w;
             w.ShowDialog();
         }
+
         private void showBasisDataClick(object sender, RoutedEventArgs e)//海图管理->海图显示->基础显示
         {
 
@@ -129,7 +145,8 @@ namespace MaritimeSecurityMonitoring
         {
 
         }
-        private void toBigerClick(object sender, RoutedEventArgs e)//海图管理->海图操作->缩小
+
+        private void toBiggerClick(object sender, RoutedEventArgs e)//海图管理->海图操作->缩小
         {
             App app = (App)App.Current;
             app.chartCtrl.ZoomIn();
@@ -139,12 +156,19 @@ namespace MaritimeSecurityMonitoring
             App app = (App)App.Current;
             app.chartCtrl.ZoomOut();
         }
+
         private void settingMeasuringScaleClick(object sender, RoutedEventArgs e)//海图管理->海图操作->指定比例尺
         {
             SetMeasuringScale w = new SetMeasuringScale();
             System.Windows.Application.Current.MainWindow = w;
             w.ShowDialog();
         }
+
+        private void measureDistanceClick(object sender, RoutedEventArgs e)//海图管理->海图操作->测距
+        {
+            Monitoring.StartRangingBack();
+        }
+
         private void topMoveClick(object sender, RoutedEventArgs e)//海图管理->海图操作->上移
         {
             App app = (App)App.Current;
@@ -170,16 +194,30 @@ namespace MaritimeSecurityMonitoring
             App app = (App)App.Current;
             app.chartCtrl.CenterMap();
         }
-        private void measureDistanceClick(object sender, RoutedEventArgs e)//海图管理->海图操作->测距
+
+        private void moveClick(object sender, RoutedEventArgs e)//漫游
         {
-            Monitoring.StartRangingBack();
+            App app = (App)App.Current;
+            if (isHandRoam == false)
+            {
+                app.chartCtrl.StartHandRoam();
+                isHandRoam = true;
+            }
+            else
+            {
+                app.chartCtrl.EndHandRoam();
+                isHandRoam = false;
+            }
+
         }
+
         private void mapManageClick(object sender, RoutedEventArgs e)//海图管理->图库管理
         {
             MapManage w = new MapManage();
             System.Windows.Application.Current.MainWindow = w;
             w.ShowDialog();
         }
+
         private void dataQueryClick(object sender, RoutedEventArgs e)//数据管理->数据查询
         {
             DataQuery p = new DataQuery();
@@ -214,10 +252,12 @@ namespace MaritimeSecurityMonitoring
                 isInShowingTrack = false;
             }
         }
+
         private void situationPlaybackClick(object sender, RoutedEventArgs e)//数据管理->态势回放
         {
 
         }
+
         private void dateExportClick(object sender, RoutedEventArgs e)//数据管理->数据导出
         {
             DateExport p = new DateExport();
@@ -233,6 +273,7 @@ namespace MaritimeSecurityMonitoring
             DeviceNetworkStatuis p = new DeviceNetworkStatuis();
             content.Content = p;
         }
+
         private void userManagementClick(object sender, RoutedEventArgs e)//系统管理->用户管理
         {
             UserManagement p = new UserManagement();
@@ -250,6 +291,7 @@ namespace MaritimeSecurityMonitoring
             System.Windows.Application.Current.MainWindow = w;
             w.ShowDialog();
         }
+
         private void networkParameterSettingClick(object sender, RoutedEventArgs e)//系统管理->参数设置->网络参数设置
         {
             NetworkParameterSetting w = new NetworkParameterSetting();
@@ -268,13 +310,15 @@ namespace MaritimeSecurityMonitoring
             System.Windows.Application.Current.MainWindow = w;
             w.ShowDialog();
         }
+
         private void helpClick(object sender, RoutedEventArgs e)
         {
 
         }
-//***********************************************************************************
-//*******************************工具栏事件******************************************
-//***********************************************************************************
+
+        //***********************************************************************************
+        //*******************************工具栏事件******************************************
+        //***********************************************************************************
         private void doubleScreenShowClick(object sender, RoutedEventArgs e)//双屏显示
         {
             //video1.Visibility = Visibility.Collapsed;
@@ -282,7 +326,7 @@ namespace MaritimeSecurityMonitoring
             //video3.Visibility = Visibility.Collapsed;
             try
             {
- /*             Window28 w2 = new Window28();
+/*              Window28 w2 = new Window28();
                 System.Windows.Application.Current.MainWindow = w2;
                 w2.Show();
 
@@ -295,33 +339,26 @@ namespace MaritimeSecurityMonitoring
             }
             catch (Exception ex)
             {
-                System.Windows.MessageBox.Show("未检测到扩展屏，请确定扩展屏正常连接！");//显示异常信息
+                MessageBoxX.Show("异常信息", "未检测到扩展屏，请确定扩展屏正常连接！");//显示异常信息
             }
 
         }
-        private void moveClick(object sender, RoutedEventArgs e)//漫游
+
+        private void platformCenteringClick(object sender, RoutedEventArgs e)//平台归心
         {
-            App app = (App)App.Current;
-            if (isHandRoam == false)
-            {
-                app.chartCtrl.StartHandRoam();
-                isHandRoam = true;
-            }
-            else
-            {
-                app.chartCtrl.EndHandRoam();
-                isHandRoam = false;
-            }
 
         }
-        private void areaLabelClick(object sender, RoutedEventArgs e)//多边形
+
+        private void partToBiggerClick(object sender, RoutedEventArgs e)//区域放大
         {
-            Monitoring.AddedForbiddenZoneBack();
+
         }
-        private void pipelineClick(object sender, RoutedEventArgs e)//管道区域
+
+        private void followingVideoClick(object sender, RoutedEventArgs e)//视频跟踪
         {
-            Monitoring.AddedPipelineBack();
+
         }
+
         private void returnClick(object sender, RoutedEventArgs e)//返回主界面
         {
             content.Content = Monitoring.MonitoringObj;

@@ -14,5 +14,6 @@ namespace MaritimeSecurityMonitoring
         public string alarmType { get; set; }
         public string alarmContent { get; set; }
         public bool isCheck { get; set; }
+        public bool isConfirmed { get; set; }
     }
 }
