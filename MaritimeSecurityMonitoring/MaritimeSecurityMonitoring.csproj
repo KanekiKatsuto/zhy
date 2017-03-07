@@ -97,6 +97,15 @@
     <Compile Include="DefenseCircleSetting.xaml.cs">
       <DependentUpon>DefenseCircleSetting.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FusionParametercs\FusionParameter.cs" />
+    <Compile Include="FusionParametercs\NumberValidationRuleForFloat.cs" />
+    <Compile Include="FusionParametercs\NumberValidationRuleForLong.cs" />
+    <Compile Include="MonitoringInterface.xaml.cs">
+      <DependentUpon>MonitoringInterface.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxXcs\MessageBoxX.xaml.cs">
+      <DependentUpon>MessageBoxX.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Monitoringcs\Config.cs" />
     <Compile Include="Monitoringcs\MixTarget.cs" />
     <Compile Include="Monitoringcs\AISTarget.cs" />
@@ -201,6 +210,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MonitoringInterface.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MessageBoxXcs\MessageBoxX.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Page\MonitoringSecondPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -289,10 +306,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MonitoringInterface.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="NetworkParameterSetting.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -339,9 +352,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MonitoringInterface.xaml.cs">
-      <DependentUpon>MonitoringInterface.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -586,6 +596,36 @@
     <Resource Include="Image\pipeline.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\Close_new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\ExtendScreenNew.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\SeperateLine.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\AreaSignNew.png" />
+    <Resource Include="Image\CaptureImagesNew.png" />
+    <Resource Include="Image\DownMoveNew.png" />
+    <Resource Include="Image\DragMoveNew.png" />
+    <Resource Include="Image\FollowingVideo.png" />
+    <Resource Include="Image\ForCenteringNew.png" />
+    <Resource Include="Image\LeftMoveNew.png" />
+    <Resource Include="Image\MeasureNew.png" />
+    <Resource Include="Image\PartToBig.png" />
+    <Resource Include="Image\PipeLineNew.png" />
+    <Resource Include="Image\PlatformCentering.png" />
+    <Resource Include="Image\PlaySituationNew.png" />
+    <Resource Include="Image\ReturnBackNew.png" />
+    <Resource Include="Image\RightMoveNew.png" />
+    <Resource Include="Image\ScaleNew.png" />
+    <Resource Include="Image\ToBigNew.png" />
+    <Resource Include="Image\ToSmallNew.png" />
+    <Resource Include="Image\TrackSearchNew.png" />
+    <Resource Include="Image\UpMoveNew.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
